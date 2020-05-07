@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="//theme.hstatic.net/1000230642/1000484971/14/favicon.png?v=2236" type="image/png" />
+
+    <title> Chi tết</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/assets_trangchu/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="~/assets_trangchu/css/shop-homepage.css" rel="stylesheet">
+    <link href="~/assets_trangchu/css/my.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "TrangChu")">TRANG CHỦ</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="@Url.Action("Index", "GioiThieu")">Giới thiệu</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "LienHe")">Liên hệ</a>
+                    </li>
+                </ul>
+
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+
+                <ul class="nav navbar-nav pull-right">
+                    <li>
+                        <a href="@Url.Action("Login", "Auth",new {Area = "Admin"})">Đăng nhập</a>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="glyphicon glyphicon-user"></span>
+                            Michael Hiền
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+    <!-- Page Content -->
+    <div class="container">
+        @RenderBody()
+        @*Load chi tiet tin tuc*@
+    </div>
+    <!-- end Page Content -->
+    <!-- Footer -->
+
+    <footer style="background-color:slategrey">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-center" style="color:aliceblue">© 2019 Ban Phần Mềm Phòng Công Nghệ Thông Tin Dona Biti's</p>
+                <p class="text-center" style="color:aliceblue">Thiết kế &amp; phát triển bởi Ban Phần Mềm Phòng Công Nghệ Thông Tin</p>
+            </div>
+        </div>
+    </footer>
+    <!-- end Footer -->
+    <!-- jQuery -->
+    <script src="~/assets_trangchu/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/assets_trangchu/js/bootstrap.min.js"></script>
+    <script src="~/assets_trangchu/js/my.js"></script>
+
+</body>
+</html>

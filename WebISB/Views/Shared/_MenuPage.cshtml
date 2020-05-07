@@ -1,0 +1,30 @@
+﻿
+<ul class="list-group" id="menu">
+    <li href="#" class="list-group-item menu1 active">
+        Danh mục
+    </li>
+
+    <li class="list-group-item menu1">
+        <a>Thể loại tin</a>
+    </li>
+    @Html.Action("LoadTL", "TrangChu", new { id = "TL" })
+
+    <li class="list-group-item menu1">
+        <a>Loại tin</a>
+    </li>
+    @Html.Action("LoaiTin", "TrangChu", new { id = "LT" })
+
+    <li class="list-group-item menu1">
+        <a href="@Url.Action("Index", "TrangChu")">Tin tức</a>
+    </li>
+
+    <li href="#" class="list-group-item menu1">
+        <a href="@Url.Action("Index", "TaiLieuTC")">Tài liệu</a>
+    </li>
+    <li href="#" class="list-group-item menu1">
+        <a href="@Url.Action("Index", "GioiThieu")">Giới thiệu</a>
+    </li>
+    <li href="#" class="list-group-item menu1">
+        <a href="@Url.Action("Index", "LienHe")">Liên hệ</a>
+    </li>
+</ul>

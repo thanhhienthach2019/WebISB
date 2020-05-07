@@ -1,0 +1,244 @@
+﻿@model WebISB.Models.Banhanhvb
+
+@{
+    ViewBag.Title = "Ban hành văn bản";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Insert", "Banhanhvb", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6 text-danger text-uppercase tieude">
+                    <strong>Quản lý ban hành văn bản</strong>
+                </div>
+                <div class="col-md-6 text-right">
+                    <button type="submit" class="btn btn-sm btn-primary">Lưu dữ liệu</button>
+                    <a href="@Url.Action("Index","Banhanhvb")" class="btn btn-sm btn-success">Quay lại</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-block">
+            <div class="row" style="padding: 1% 1% 1% 1%">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Số văn bản</label>
+                        @Html.DropDownList("Idvanban", null, htmlAttributes: new { @class = "form-control", @id = "normalDropDown" })
+                        @Html.ValidationMessageFor(model => model.Idvanban, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Đơn vị ban hành</label>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="checkbox checkbox-info checkbox-circle">
+                                                <input id="checkbox1" type="checkbox" name="checkbox" value="1">
+                                                <label for="checkbox1">
+                                                    CÔNG TY BITIS
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info checkbox-circle">
+                                                <input id="checkbox2" type="checkbox" name="checkbox" value="2">
+                                                <label for="checkbox2">
+                                                    VP.TGĐ
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info checkbox-circle">
+                                                <input id="checkbox3" type="checkbox" name="checkbox" value="3">
+                                                <label for="checkbox3">
+                                                    PHÒNG CÔNG NGHỆ THÔNG TIN
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info checkbox-circle">
+                                                <input id="checkbox4" type="checkbox" name="checkbox" value="4">
+                                                <label for="checkbox4">
+                                                    PHÒNG HÀNH CHÁNH NHÂN SỰ
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info checkbox-circle">
+                                                <input id="checkbox5" type="checkbox" name="checkbox" value="5">
+                                                <label for="checkbox5">
+                                                    PHÒNG KTTC
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info checkbox-circle">
+                                                <input id="checkbox6" type="checkbox" name="checkbox" value="6">
+                                                <label for="checkbox6">
+                                                    PHÒNG THU MUA
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info checkbox-circle">
+                                                <input id="checkbox7" type="checkbox" name="checkbox" value="7">
+                                                <label for="checkbox7">
+                                                    PHÒNG KDXK
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info checkbox-circle">
+                                                <input id="checkbox8" type="checkbox" name="checkbox" value="8">
+                                                <label for="checkbox8">
+                                                    PHÒNG NC&PTSP
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info checkbox-circle">
+                                                <input id="checkbox9" type="checkbox" name="checkbox" value="9">
+                                                <label for="checkbox9">
+                                                    PHÒNG QUẢN LÝ CHẤT LƯỢNG
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info checkbox-circle">
+                                                <input id="checkbox10" type="checkbox" name="checkbox" value="10">
+                                                <label for="checkbox10">
+                                                    PHÒNG QLSX
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info checkbox-circle">
+                                                <input id="checkbox11" type="checkbox" name="checkbox" value="11">
+                                                <label for="checkbox11">
+                                                    XƯỞNG KTCĐ
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info checkbox-circle">
+                                                <input id="checkbox12" type="checkbox" name="checkbox" value="12">
+                                                <label for="checkbox12">
+                                                    XƯỞNG NHỰA-EVA-PHYLON
+                                                </label>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="checkbox checkbox-info checkbox-circle">
+                                            <input id="checkbox13" type="checkbox" name="checkbox" value="13">
+                                            <label for="checkbox13">
+                                                XƯỞNG PU-CAOSU
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-info checkbox-circle">
+                                            <input id="checkbox14" type="checkbox" name="checkbox" value="14">
+                                            <label for="checkbox14">
+                                                XƯỞNG CD-THÊU
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-info checkbox-circle">
+                                            <input id="checkbox15" type="checkbox" name="checkbox" value="15">
+                                            <label for="checkbox15">
+                                                XƯỞNG ILBH
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-info checkbox-circle">
+                                            <input id="checkbox16" type="checkbox" name="checkbox" value="16">
+                                            <label for="checkbox16">
+                                                XƯỞNG DÉP-SD
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-info checkbox-circle">
+                                            <input id="checkbox17" type="checkbox" name="checkbox" value="17">
+                                            <label for="checkbox17">
+                                                XƯỞNG SANDAL
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-info checkbox-circle">
+                                            <input id="checkbox18" type="checkbox" name="checkbox" value="18">
+                                            <label for="checkbox18">
+                                                XƯỞNG GIÀY
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-info checkbox-circle">
+                                            <input id="checkbox19" type="checkbox" name="checkbox" value="19">
+                                            <label for="checkbox19">
+                                                XƯỞNG GOSTO
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-info checkbox-circle">
+                                            <input id="checkbox20" type="checkbox" name="checkbox" value="20">
+                                            <label for="checkbox20">
+                                                PHÒNG KHO VẬN
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-info checkbox-circle">
+                                            <input id="checkbox21" type="checkbox" name="checkbox" value="21">
+                                            <label for="checkbox21">
+                                                XƯỞNG CELL LINE
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-info checkbox-circle">
+                                            <input id="checkbox22" type="checkbox" name="checkbox" value="22">
+                                            <label for="checkbox22">
+                                                PHÒNG KẾ HOẠCH
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-info checkbox-circle">
+                                            <input id="checkbox23" type="checkbox" name="checkbox" value="23">
+                                            <label for="checkbox23">
+                                                CHI NHÁNH LONG AN
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-info checkbox-circle">
+                                            <input id="checkbox24" type="checkbox" name="checkbox" value="24">
+                                            <label for="checkbox24">
+                                                CHI NHÁNH CẦN THƠ
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Ngày ban hành</label>
+                        @Html.TextAreaFor(model => model.Ngayphathanh, new { @class = "form-control", @rows = "1", @ReadOnly = "true" })
+                        @Html.ValidationMessageFor(model => model.Ngayphathanh, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Người ban hành</label>
+                        <textarea class="form-control" rows="1" readonly>@ViewBag.Nguoibh</textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (ViewBag.Message != null)
+{
+    if (ViewBag.tam == 1)
+    {
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                swal("", "@ViewBag.Message!", "success").then(function () {
+                    window.location.href = "/Admin/Banhanhvb";
+                });
+            };
+            
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                swal("", "@ViewBag.Message!", "warning");
+            };
+        </script>
+    }
+
+}
+<script>
+    //su dung dropdownlist chosen
+    $(function () {
+        $("#normalDropDown").chosen({
+            width: "100%"//auto set witdh 
+        });
+        $("#normalDropDown").css({ minWidth: '100%', width: 'auto' });
+    });
+    
+</script>

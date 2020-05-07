@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Trang chủ</title>
+    <link rel="shortcut icon" href="~/assets_trangchu/image/favicon.png" type="image/png" />
+
+    <!-- Bootstrap CSS CDN -->
+    @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">*@
+    <link href="~/assets_trangchu/css/bootstraptc.min.css" rel="stylesheet" />
+
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="~/assets/css/style_main.css" />
+    <!-- Font Awesome JS -->
+    @*<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>*@
+    <script src="~/assets_trangchu/js/solid.js"></script>
+
+    @*<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>*@
+    <script src="~/assets_trangchu/js/fontawesome.js"></script>
+    <link href="~/assets_trangchu/css/bootstrapPagelist.css" rel="stylesheet" />
+
+    @*Datatable*@
+    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />*@
+    <link href="~/assets_trangchu/css/datatable_trangchu.css" rel="stylesheet" />
+    @*Dialog*@
+    @*<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />*@
+    <link href="~/assets_trangchu/css/jquery-ui.css" rel="stylesheet" />
+    @*<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>*@
+    <script src="~/assets_trangchu/js/jquery-1.11.3.min.js"></script>
+
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img src="~/Image/Backgroud/logo2.png" width="100%" height="200px" class="img-responsive" />
+            </div>
+            <ul class="list-unstyled components" style="font-size:15px">
+                <li>
+                    <a href="@Url.Action("index","Trangchu")">Trang chủ</a>
+                </li>
+                <li>
+                    <a href="#">Giới thiệu</a>
+                </li>
+                @*<li>
+                    <a href="#theloaiSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Thể loại</a>
+                    <ul class="collapse list-unstyled" id="theloaiSubmenu">
+                        <li>
+                            <a href="@Url.Action("check","theloait",new { loai = "the-loai",id = 1,key = "thong-tin"})">Thông tin</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("check","theloait",new { loai = "the-loai",id = 5,key = "bao-cao"})">Báo cáo</a>
+                        </li>
+                    </ul>
+                </li>*@
+                <li>
+                    <a href="@Url.Action("index","loaitailieu")">Tư liệu</a>
+                </li>
+                <li>
+                    <a href="#">Liên hệ</a>
+                </li>
+                <li>
+                    <a href="~/admin/auth/logout">Đăng xuất</a>
+                    @*<a id="btnLogout">Đăng xuất</a>*@
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item mr-2">
+                                <a class="nav-link" href="@Url.Action("Index", "TrangChu")">Văn Bản Công Ty</a>
+                            </li>
+                            @*<li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("VanbanNB", "TrangChu")">Văn Bản Nội Bộ</a>
+                </li>*@
+                            <li class="nav-item mr-2">
+                                @*<a class="nav-link" href="@Url.Action("document","tailieut",new { key = "tu-lieu"})">Tư Liệu</a>*@
+                                <a class="nav-link" href="@Url.Action("index","loaitailieu")">Tư Liệu</a>
+                            </li>
+                            @*<li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("check","theloait",new { loai = "the-loai",id = 5,key = "bao-cao"})">Báo Cáo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("check","theloait",new { loai = "the-loai",id = 1,key = "thong-tin"})">Thông Tin</a>
+                </li>*@
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Admin/Dashboard">Hệ Thống</a>
+                            </li>
+                            <li class="nav-item" style="padding-left:100px;">
+                                @if (Session["user_fullname"].ToString() == "")
+                                {
+                                    <a class="nav-link" href="@Url.Action("Login", "Auth",new {Area = "Admin"})">Đăng nhập</a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link"><span><small> <i>Xin chào: </i></small></span> @Session["user_fullname"]</a>
+                                }
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            @RenderBody()
+            @*<footer id="content1">
+                    <p class="text-center" style="color:#999;font-size:12px">© 2019 Ban Phần Mềm Phòng Công Nghệ Thông Tin Dona Biti's</p>
+                    <p class="text-center" style="color:#999;font-size:12px">Thiết kế &amp; phát triển bởi Ban Phần Mềm Phòng Công Nghệ Thông Tin</p>
+                </footer>*@
+        </div>
+    </div>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    @*<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>*@
+    <!-- Popper.JS -->
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>*@
+    <script src="~/assets_trangchu/js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    @*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>*@
+    <script src="~/assets_trangchu/js/bootstrap2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });</script>
+</body>
+</html>
+@*@RenderSection("scripts", required: false)*@
+@*datatable*@
+@*<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>*@
+<script src="~/assets_trangchu/js/jquery.dataTables.min.js"></script>
+<script src="~/assets_trangchu/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/assets_trangchu/js/sweetalert.min.js"></script>
+@*<script src="~/Scripts/logout/logout.js"></script>*@

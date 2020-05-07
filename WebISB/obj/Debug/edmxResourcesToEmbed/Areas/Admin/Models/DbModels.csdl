@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ISBModelEn" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="comment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idTinTuc" Type="Int32" />
+    <Property Name="NoiDung" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tintuc" Relationship="Self.FK_comment_tintuc" FromRole="comment" ToRole="tintuc" />
+    <NavigationProperty Name="user" Relationship="Self.FK_comment_users" FromRole="comment" ToRole="users" />
+  </EntityType>
+  <EntityType Name="loaitin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idTheLoai" Type="Int32" Nullable="false" />
+    <Property Name="Ten" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TenKhongDau" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="theloai" Relationship="Self.FK_loaitin_theloai" FromRole="loaitin" ToRole="theloai" />
+    <NavigationProperty Name="tintucs" Relationship="Self.FK_tintuc_loaitin" FromRole="loaitin" ToRole="tintuc" />
+  </EntityType>
+  <EntityType Name="slide">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Hinh" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="link" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="theloai">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TenKhongDau" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="loaitins" Relationship="Self.FK_loaitin_theloai" FromRole="theloai" ToRole="loaitin" />
+  </EntityType>
+  <EntityType Name="tintuc">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="TieuDeKhongDau" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Name="TomTat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NoiBat" Type="Int32" />
+    <Property Name="SoLuotXem" Type="Int32" />
+    <Property Name="idLoaiTin" Type="Int32" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <Property Name="User_Create" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="Int32" />
+    <NavigationProperty Name="comments" Relationship="Self.FK_comment_tintuc" FromRole="tintuc" ToRole="comment" />
+    <NavigationProperty Name="loaitin" Relationship="Self.FK_tintuc_loaitin" FromRole="tintuc" ToRole="loaitin" />
+    <NavigationProperty Name="user" Relationship="Self.FK_tintuc_users" FromRole="tintuc" ToRole="users" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="comments" Relationship="Self.FK_comment_users" FromRole="users" ToRole="comment" />
+    <NavigationProperty Name="tintucs" Relationship="Self.FK_tintuc_users" FromRole="users" ToRole="tintuc" />
+  </EntityType>
+  <Association Name="FK_comment_tintuc">
+    <End Role="tintuc" Type="Self.tintuc" Multiplicity="0..1" />
+    <End Role="comment" Type="Self.comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tintuc">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="idTinTuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_comment_users">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="comment" Type="Self.comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loaitin_theloai">
+    <End Role="theloai" Type="Self.theloai" Multiplicity="1" />
+    <End Role="loaitin" Type="Self.loaitin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="theloai">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="loaitin">
+        <PropertyRef Name="idTheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tintuc_loaitin">
+    <End Role="loaitin" Type="Self.loaitin" Multiplicity="1" />
+    <End Role="tintuc" Type="Self.tintuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loaitin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tintuc">
+        <PropertyRef Name="idLoaiTin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tintuc_users">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="tintuc" Type="Self.tintuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tintuc">
+        <PropertyRef Name="User_Create" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ISBModel" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="comments" EntityType="Self.comment" />
+    <EntitySet Name="loaitins" EntityType="Self.loaitin" />
+    <EntitySet Name="slides" EntityType="Self.slide" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="theloais" EntityType="Self.theloai" />
+    <EntitySet Name="tintucs" EntityType="Self.tintuc" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK_comment_tintuc" Association="Self.FK_comment_tintuc">
+      <End Role="tintuc" EntitySet="tintucs" />
+      <End Role="comment" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_comment_users" Association="Self.FK_comment_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="comment" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loaitin_theloai" Association="Self.FK_loaitin_theloai">
+      <End Role="theloai" EntitySet="theloais" />
+      <End Role="loaitin" EntitySet="loaitins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tintuc_loaitin" Association="Self.FK_tintuc_loaitin">
+      <End Role="loaitin" EntitySet="loaitins" />
+      <End Role="tintuc" EntitySet="tintucs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tintuc_users" Association="Self.FK_tintuc_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="tintuc" EntitySet="tintucs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

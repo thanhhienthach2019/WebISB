@@ -1,0 +1,22 @@
+﻿@model IEnumerable<WebISB.Models.gioithieu>
+
+@{
+    ViewBag.Title = "Giới thiệu";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#337AB7; color:white;">
+        <h3 style="margin-top:0px; margin-bottom:0px;"> Giới thiệu</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            @foreach (var item in Model)
+            {
+                //Convert Html to label
+                @Html.Raw(HttpUtility.HtmlDecode(item.NoiDung))
+            }
+
+        </div>
+    </div>
+</div>

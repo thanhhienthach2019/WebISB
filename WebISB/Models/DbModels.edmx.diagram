@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5fe8dba737f7404f8a48673d42451f29" Name="Diagram1">
+        <EntityTypeShape EntityType="ISBModel.comment" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISBModel.loaitin" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISBModel.slide" Width="1.5" PointX="3.375" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISBModel.sysdiagram" Width="1.5" PointX="5.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISBModel.theloai" Width="1.5" PointX="1.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISBModel.tintuc" Width="1.5" PointX="6.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISBModel.user" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="ISBModel.FK_comment_tintuc" ManuallyRouted="false" />
+        <AssociationConnector Association="ISBModel.FK_comment_users" ManuallyRouted="false" />
+        <AssociationConnector Association="ISBModel.FK_loaitin_theloai" ManuallyRouted="false" />
+        <AssociationConnector Association="ISBModel.FK_tintuc_loaitin" ManuallyRouted="false" />
+        <AssociationConnector Association="ISBModel.FK_tintuc_users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ISBModel.lienhe" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ISBModel.gioithieu" Width="1.5" PointX="8.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ISBModel.loaivanban" Width="1.5" PointX="8.75" PointY="7.875" />
+        <EntityTypeShape EntityType="ISBModel.DonVi" Width="1.5" PointX="6.75" PointY="9.875" />
+        <AssociationConnector Association="ISBModel.FK__users__donvi__18EBB532" />
+        <EntityTypeShape EntityType="ISBModel.Banhanhvb" Width="1.5" PointX="10.625" PointY="4" />
+        <EntityTypeShape EntityType="ISBModel.vanban" Width="1.5" PointX="10.625" PointY="7" />
+        <AssociationConnector Association="ISBModel.FK__Banhanhvb__Idvan__59C55456" />
+        <AssociationConnector Association="ISBModel.FK__vanban__Idloaivb__10566F31" />
+        <EntityTypeShape EntityType="ISBModel.PhanQuyen" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ISBModel.loaitailieu" PointX="3.375" PointY="11.875" Width="1.5" />
+        <EntityTypeShape EntityType="ISBModel.tailieu" Width="1.5" PointX="1" PointY="8.375" />
+        <AssociationConnector Association="ISBModel.FK__tailieu__MaLoai__7755B73D" />
+        <AssociationConnector Association="ISBModel.FK__tailieu__user_cr__0B91BA14" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

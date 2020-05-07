@@ -1,0 +1,26 @@
+﻿html, body {
+    /*padding: 0;
+    margin: 0;*/
+    height: 100%;
+}
+
+#wapper {
+    min-height: 100%;
+    position: relative;
+}
+
+#header {
+    color: #fff;
+}
+
+.content-wrap {
+    padding-bottom: 20px;
+}
+
+#footer {
+    /*height:30px;*/
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+}

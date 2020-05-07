@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ISBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Banhanhvb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Idvanban" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Donvinhan" Type="nvarchar" MaxLength="20" />
+    <Property Name="Ngayphathanh" Type="datetime" />
+    <Property Name="Nguoibanhanh" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="comment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idUser" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="idTinTuc" Type="int" />
+    <Property Name="NoiDung" Type="varchar" MaxLength="255" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DonVi">
+    <Key>
+      <PropertyRef Name="MS_DV" />
+    </Key>
+    <Property Name="MS_DV" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenDonVi" Type="nvarchar" MaxLength="500" />
+    <Property Name="VietTat" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="gioithieu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="200" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="User_Create" Type="nvarchar" MaxLength="150" />
+    <Property Name="Date_Create" Type="datetime" />
+  </EntityType>
+  <EntityType Name="lienhe">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="255" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="User_Create" Type="nvarchar" MaxLength="100" />
+    <Property Name="Date_Create" Type="datetime" />
+  </EntityType>
+  <EntityType Name="loaitailieu">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenLoai" Type="nvarchar" MaxLength="300" />
+    <Property Name="Create_at" Type="datetime" />
+    <Property Name="User_create" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="loaitin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTheLoai" Type="int" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="255" />
+    <Property Name="TenKhongDau" Type="varchar" MaxLength="255" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+    <Property Name="status" Type="smallint" />
+  </EntityType>
+  <EntityType Name="loaivanban">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoaiVB" Type="nvarchar" MaxLength="150" />
+    <Property Name="DateCreate" Type="datetime" />
+    <Property Name="UserCreate" Type="varchar" MaxLength="20" />
+    <Property Name="DateUpdate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PhanQuyen">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="mVanban" Type="bit" />
+    <Property Name="mTheloaiTin" Type="bit" />
+    <Property Name="mLoaiTin" Type="bit" />
+    <Property Name="mTinTuc" Type="bit" />
+    <Property Name="mTaiLieu" Type="bit" />
+    <Property Name="mGioiThieu" Type="bit" />
+    <Property Name="mLienHe" Type="bit" />
+    <Property Name="mLoaivanban" Type="bit" />
+    <Property Name="mQuantri" Type="bit" />
+    <Property Name="Quyen" Type="bit" />
+  </EntityType>
+  <EntityType Name="slide">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten" Type="varchar" MaxLength="255" />
+    <Property Name="Hinh" Type="varchar" MaxLength="255" />
+    <Property Name="link" Type="varchar" MaxLength="255" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tailieu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="250" />
+    <Property Name="TenFile" Type="nvarchar" MaxLength="150" />
+    <Property Name="FilePath" Type="varchar" MaxLength="400" />
+    <Property Name="create_at" Type="datetime" />
+    <Property Name="create_up" Type="datetime" />
+    <Property Name="status" Type="smallint" />
+    <Property Name="user_create" Type="varchar" MaxLength="50" />
+    <Property Name="MaSo" Type="varchar" MaxLength="100" />
+    <Property Name="MS_DV" Type="varchar" MaxLength="10" />
+    <Property Name="MaLoai" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="theloai">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="255" />
+    <Property Name="TenKhongDau" Type="varchar" MaxLength="255" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+    <Property Name="status" Type="smallint" />
+  </EntityType>
+  <EntityType Name="tintuc">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="400" />
+    <Property Name="TieuDeKhongDau" Type="varchar" MaxLength="400" />
+    <Property Name="TomTat" Type="nvarchar(max)" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="ImagePath" Type="varchar" MaxLength="255" />
+    <Property Name="NoiBat" Type="int" />
+    <Property Name="SoLuotXem" Type="int" />
+    <Property Name="idLoaiTin" Type="int" Nullable="false" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+    <Property Name="User_Create" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="status" Type="int" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="150" />
+    <Property Name="email" Type="varchar" MaxLength="255" />
+    <Property Name="password" Type="varchar" MaxLength="255" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+    <Property Name="donvi" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="vanban">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Sovb" Type="nvarchar" MaxLength="150" />
+    <Property Name="Trichyeu" Type="nvarchar(max)" />
+    <Property Name="Noidung" Type="nvarchar(max)" />
+    <Property Name="Ngaydang" Type="datetime" />
+    <Property Name="Nguoidang" Type="nvarchar" MaxLength="30" />
+    <Property Name="Idloaivb" Type="int" />
+    <Property Name="Url" Type="nvarchar" MaxLength="300" />
+    <Property Name="Donvigui" Type="varchar" MaxLength="150" />
+    <Property Name="TenFile" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <Association Name="FK__Banhanhvb__Idvan__59C55456">
+    <End Role="vanban" Type="Self.vanban" Multiplicity="1" />
+    <End Role="Banhanhvb" Type="Self.Banhanhvb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vanban">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Banhanhvb">
+        <PropertyRef Name="Idvanban" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tailieu__user_cr__0B91BA14">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="tailieu" Type="Self.tailieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tailieu">
+        <PropertyRef Name="user_create" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__users__donvi__18EBB532">
+    <End Role="DonVi" Type="Self.DonVi" Multiplicity="0..1" />
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonVi">
+        <PropertyRef Name="MS_DV" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="donvi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__users__donvi__2180FB33">
+    <End Role="DonVi" Type="Self.DonVi" Multiplicity="0..1" />
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonVi">
+        <PropertyRef Name="MS_DV" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="donvi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__vanban__Idloaivb__10566F31">
+    <End Role="loaivanban" Type="Self.loaivanban" Multiplicity="0..1" />
+    <End Role="vanban" Type="Self.vanban" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loaivanban">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="vanban">
+        <PropertyRef Name="Idloaivb" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_comment_tintuc">
+    <End Role="tintuc" Type="Self.tintuc" Multiplicity="0..1" />
+    <End Role="comment" Type="Self.comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tintuc">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="idTinTuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_comment_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="comment" Type="Self.comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loaitin_theloai">
+    <End Role="theloai" Type="Self.theloai" Multiplicity="1" />
+    <End Role="loaitin" Type="Self.loaitin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="theloai">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="loaitin">
+        <PropertyRef Name="idTheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tintuc_loaitin">
+    <End Role="loaitin" Type="Self.loaitin" Multiplicity="1" />
+    <End Role="tintuc" Type="Self.tintuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loaitin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tintuc">
+        <PropertyRef Name="idLoaiTin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tintuc_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="tintuc" Type="Self.tintuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tintuc">
+        <PropertyRef Name="User_Create" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Count_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="TT_S" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Count_status_Lt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="TT_S" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Delete_Loaitin_TinTuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idTheLoai" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Delete_TinTuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idLoaiTin" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_banhanhvanban_dashboard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Donvi" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_Banhanhvb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_Banhanhvb_NB_Den" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Sovb" Type="varchar" Mode="In" />
+    <Parameter Name="Noiphathanh" Type="varchar" Mode="In" />
+    <Parameter Name="Loaivanban" Type="varchar" Mode="In" />
+    <Parameter Name="Trichyeu" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="DonVi" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_Banhanhvb_Tim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Sovb" Type="varchar" Mode="In" />
+    <Parameter Name="Noiphathanh" Type="varchar" Mode="In" />
+    <Parameter Name="Loaivanban" Type="varchar" Mode="In" />
+    <Parameter Name="Trichyeu" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Get_Banhanhvb_Tim_vbdi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="donvi" Type="varchar" Mode="In" />
+    <Parameter Name="Sovb" Type="varchar" Mode="In" />
+    <Parameter Name="Noiphathanh" Type="varchar" Mode="In" />
+    <Parameter Name="Loaivanban" Type="varchar" Mode="In" />
+    <Parameter Name="Trichyeu" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Get_Banhanhvb_vb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_ChiTietTin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_ChiTietTin_LT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idLT" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_ChiTietTin_Noibat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_Chitietvb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_Chitietvb_vb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="get_donvi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_GioiThieu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_LienHe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_LoaiTaiLieu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_LoaiTin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_LoaiTin_Trash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_loaiVanban" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="get_loaivanban_dropdownlist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_Noibo_vbden" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DonVi" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_PhanQuyen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_Side_Menu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Idparent" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_Slide_Page" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_Tailieu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaLoai" Type="varchar" Mode="In" />
+    <Parameter Name="MS_DV" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_tailieu_admin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ms_dv" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_Tailieu_PhongBan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaLoai" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_Tailieu_Trash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ms_dv" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_TheLoai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_TheLoai_Trash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_TinTuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_TinTuc_Loai_TC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Loai" Type="varchar" Mode="In" />
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_TinTuc_TC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_TinTuc_Trash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_vanban_cb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_vanban_dashboard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Donvi" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_vanbandi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="donvi" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_vanbandi_NoiBo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="donvi" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_vanbandi_NoiBo_search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Sovb" Type="varchar" Mode="In" />
+    <Parameter Name="Loaivanban" Type="varchar" Mode="In" />
+    <Parameter Name="Trichyeu" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="donvigui" Type="varchar" Mode="In" />
+    <Parameter Name="DonViNhan" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_delVanban" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idvb" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="Update_Loaitin_Status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idTheLoai" Type="int" Mode="In" />
+    <Parameter Name="up" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Update_TinTuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TieuDe" Type="nvarchar" Mode="In" />
+    <Parameter Name="TieuDeKhongDau" Type="varchar" Mode="In" />
+    <Parameter Name="TomTat" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="NoiDung" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="ImagePath" Type="varchar" Mode="In" />
+    <Parameter Name="NoiBat" Type="int" Mode="In" />
+    <Parameter Name="IdLoaiTin" Type="int" Mode="In" />
+    <Parameter Name="Updated_at" Type="datetime" Mode="In" />
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Update_Tintuc_Status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idLoaiTin" Type="int" Mode="In" />
+    <Parameter Name="up" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="ISBModelStoreContainer">
+    <EntitySet Name="Banhanhvb" EntityType="Self.Banhanhvb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="comment" EntityType="Self.comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonVi" EntityType="Self.DonVi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gioithieu" EntityType="Self.gioithieu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lienhe" EntityType="Self.lienhe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="loaitailieu" EntityType="Self.loaitailieu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="loaitin" EntityType="Self.loaitin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="loaivanban" EntityType="Self.loaivanban" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="slide" EntityType="Self.slide" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tailieu" EntityType="Self.tailieu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="theloai" EntityType="Self.theloai" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tintuc" EntityType="Self.tintuc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vanban" EntityType="Self.vanban" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Banhanhvb__Idvan__59C55456" Association="Self.FK__Banhanhvb__Idvan__59C55456">
+      <End Role="vanban" EntitySet="vanban" />
+      <End Role="Banhanhvb" EntitySet="Banhanhvb" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tailieu__user_cr__0B91BA14" Association="Self.FK__tailieu__user_cr__0B91BA14">
+      <End Role="users" EntitySet="users" />
+      <End Role="tailieu" EntitySet="tailieu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__users__donvi__18EBB532" Association="Self.FK__users__donvi__18EBB532">
+      <End Role="DonVi" EntitySet="DonVi" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__users__donvi__2180FB33" Association="Self.FK__users__donvi__2180FB33">
+      <End Role="DonVi" EntitySet="DonVi" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__vanban__Idloaivb__10566F31" Association="Self.FK__vanban__Idloaivb__10566F31">
+      <End Role="loaivanban" EntitySet="loaivanban" />
+      <End Role="vanban" EntitySet="vanban" />
+    </AssociationSet>
+    <AssociationSet Name="FK_comment_tintuc" Association="Self.FK_comment_tintuc">
+      <End Role="tintuc" EntitySet="tintuc" />
+      <End Role="comment" EntitySet="comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_comment_users" Association="Self.FK_comment_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="comment" EntitySet="comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loaitin_theloai" Association="Self.FK_loaitin_theloai">
+      <End Role="theloai" EntitySet="theloai" />
+      <End Role="loaitin" EntitySet="loaitin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tintuc_loaitin" Association="Self.FK_tintuc_loaitin">
+      <End Role="loaitin" EntitySet="loaitin" />
+      <End Role="tintuc" EntitySet="tintuc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tintuc_users" Association="Self.FK_tintuc_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="tintuc" EntitySet="tintuc" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

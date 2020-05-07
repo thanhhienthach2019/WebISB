@@ -1,0 +1,4 @@
+dbguser: 5385291201
+sp-thai: kk123456
+
+DNCNTT002:051015

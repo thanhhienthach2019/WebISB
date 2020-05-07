@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebISB.Models.lienhe>
+
+@{
+    ViewBag.Title = "Liên hệ";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#337AB7; color:white;">
+        <h3 style="margin-top:0px; margin-bottom:0px;"> Liên hệ</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            @foreach (var item in Model)
+            {
+                @*@Html.Raw(HttpUtility.HtmlDecode(item.NoiDung))*@
+                //Convert Html to label
+                @Html.Raw(HttpUtility.HtmlDecode(item.NoiDung))
+            }
+
+        </div>
+    </div>
+</div>

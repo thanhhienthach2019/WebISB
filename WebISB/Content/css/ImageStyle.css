@@ -1,0 +1,8 @@
+﻿.file {
+    visibility: hidden;
+    position: absolute;
+}
+#preview{
+    width:350px;
+    height:220px;
+}

@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "Tin tức";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+@model PagedList.IPagedList<WebISB.Models.FN_Get_TinTuc_Loai_TC_Result>
+@using PagedList.Mvc
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card" style="background-color:#337AB7; color:white;">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6 text-uppercase">
+                            <h3 style="margin-top:0px; margin-bottom:0px;"> @ViewBag.key</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-block" style="padding: 1% 1% 1% 1%">
+                @foreach (var item in Model)
+                {
+                    <!-- item -->
+                    <div class="row-item row">
+                        <div class="col-md-12">
+                            <h4 style="padding-left:1%">
+                                <small><a href="loaitin.html"><i>@item.TenLT</i></a></small>
+                            </h4>
+                        </div>
+                        <div class="col-md-12 border-right" style="padding-top:2px">
+                            <div class="col-md-2">
+                                <a href="@Url.Action("Detail", "ChiTiet",new { key="chi-tiet-tin",id = item.id } )">
+                                    @if (item.ImagePath == "" || item.ImagePath == null || item.ImagePath == "noimage.png")
+                                    {
+                                        <img class="img-responsive" width="150px" src="~/Image/Tintuc/320x150.png" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img class="img-responsive" width="150px" src="~/Image/Tintuc/@item.ImagePath" alt="">
+                                    }
+                                </a>
+                            </div>
+                            <div class="col-md-10">
+                                <h4><small>@item.TieuDe</small></h4>
+                                <p><small> @item.TomTat</small></p>
+                                @if (ViewBag.check == "thong-tin")
+                                {
+                                    <a class="btn btn-primary" href="@Url.Action("Detail", "ChiTiet",new { key="chi-tiet-thong-tin",id = item.id } )">Xem chi tiết <span class="glyphicon glyphicon-chevron-right"></span></a>
+                                }
+                                else if (ViewBag.check == "bao-cao")
+                                {
+                                    <a class="btn btn-primary" href="@Url.Action("Detail", "ChiTiet",new { key="chi-tiet-bao-cao",id = item.id } )">Xem chi tiết <span class="glyphicon glyphicon-chevron-right"></span></a>
+                                }
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="break"></div>
+                    </div>
+                    <!-- end item -->
+                }
+                @if (ViewBag.count > 0)
+                {
+                    <div style="padding-left:5%">
+                        @Html.PagedListPager(Model, page => Url.Action("check", new { page, loai = ViewBag.loai, id = ViewBag.id, key = ViewBag.key }))
+                        Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount News
+
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@*<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#337AB7; color:white;">
+        <h3 style="margin-top:0px; margin-bottom:0px;"> Tin Tức</h3>
+    </div>
+
+    <div class="panel-body">
+        @foreach (var item in Model)
+        {
+            <!-- item -->
+            <div class="row-item row">
+                <h3>
+                    <a href="#">@item.TenTL</a> |
+                    <small><a href="loaitin.html"><i>@item.TenLT</i></a></small> |
+                    <small><i>Lượt xem: <span class="glyphicon glyphicon-eye-open"></span> @item.SoLuotXem</i></small>
+                </h3>
+                <div class="col-md-12 border-right" style="padding-top:2px">
+                    <div class="col-md-3">
+                        <a href="@Url.Action("Detail", "ChiTiet",new { id = item.id } )">
+                            @if (item.ImagePath == "" || item.ImagePath == null || item.ImagePath == "noimage.png")
+                            {
+                                <img class="img-responsive" src="~/Image/Tintuc/320x150.png" alt="">
+                            }
+                            else
+                            {
+                                <img class="img-responsive" src="~/Image/Tintuc/@item.ImagePath" alt="">
+                            }
+
+                        </a>
+                    </div>
+                    <div class="col-md-9">
+                        <h3>@item.TieuDe</h3>
+                        <p>@item.TomTat</p>
+                        <a class="btn btn-primary" href="@Url.Action("Detail", "ChiTiet",new { id = item.id } )">Xem chi tiết <span class="glyphicon glyphicon-chevron-right"></span></a>
+                    </div>
+                </div>
+
+                <div class="break"></div>
+            </div>
+            <!-- end item -->
+        }
+        <div style="padding-left:5%">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, loai = ViewBag.loai,id = ViewBag.id }))
+            Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount News
+        </div>
+    </div>
+
+
+</div>*@
+
+

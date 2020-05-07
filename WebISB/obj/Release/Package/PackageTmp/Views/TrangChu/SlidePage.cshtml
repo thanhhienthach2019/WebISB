@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebISB.Models.slide>
+
+@if ((int)ViewBag.Count > 0)
+{
+    int tmp = 1;
+    foreach (var item in Model)
+    {
+        if (tmp == 1)
+        {
+            <div class="item active">
+                <img class="slide-image" src="@item.link" alt="@item.Ten">
+            </div>
+            tmp = 0;
+        }
+        else
+        {
+            <div class="item ">
+                <img class="slide-image" src="@item.link" alt="@item.Ten">
+            </div>
+        }
+
+    }
+}

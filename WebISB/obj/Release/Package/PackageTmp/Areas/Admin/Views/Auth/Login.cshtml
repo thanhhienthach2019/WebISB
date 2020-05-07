@@ -1,0 +1,82 @@
+﻿@model WebISB.Models.user
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLogin.cshtml";
+}
+@using (Html.BeginForm("Login", "Auth", FormMethod.Post))//"Login", "Auth",
+{
+    @Html.AntiForgeryToken()
+    @*@Html.ValidationSummary(false,"",new { @class = "alert alert-danger"})*@
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form">
+                    <span class="login100-form-logo">
+                        <i class="zmdi zmdi-landscape"></i>
+                    </span>
+
+                    <span class="login100-form-title p-b-34 p-t-27">
+                        Log in
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                        @Html.TextBoxFor(model => Model.id, null, new { @class = "input100", @placeholder = "Username" })
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        @Html.TextBoxFor(model => Model.password, null, new { @class = "input100", @placeholder = "Password", @type = "password" })
+                        <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    </div>
+
+                    <div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                        <label class="label-checkbox100" for="ckb1">
+                            Remember me
+                        </label>
+                    </div>
+                    <div class="container-login100-form-btn form-group">
+                        <div class="col-md-5">
+                            <button class="login100-form-btn" type="submit" name="login">
+                                Login
+                            </button>
+
+                        </div>
+                        <div class="col-md-5">
+                            <button class="login100-form-btn" type="submit" name="cancel">
+                                Cancel
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="text-center p-t-90">
+                        <a class="txt1" href="#">
+                            Forgot Password?
+                        </a>
+                    </div>
+                    @if (ViewBag.tmp == 1)
+                    {
+                        <script type="text/javascript" charset="utf-8">
+                            window.onload = function () {
+                                swal("", "Logged in successfully!", "success").then(function () {
+                                    window.location.href = "/Trangchu";
+                                });
+                            };
+                        </script>
+                    }
+                    else if (ViewBag.Message != null)
+                    {
+                        <div class="text-center p-t-90">
+                            <div class="alert alert-warning alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <strong>Warning!</strong>  @ViewBag.Message
+                            </div>
+                        </div>
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+}

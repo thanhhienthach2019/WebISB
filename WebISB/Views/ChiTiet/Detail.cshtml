@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebISB.Models.FN_Get_ChiTietTin_Result>
+
+@{
+    ViewBag.Title = "Chi tiết";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+<div class="row">
+    <!-- Blog Post Content Column -->
+    @foreach (var item in Model)
+    {
+    <div class="col-md-9">
+
+        <!-- Blog Post -->
+        <!-- Title -->
+        <h2>@item.TenLT</h2>
+
+        <!-- Author -->
+        <p class="lead">
+            @item.TieuDe
+        </p>
+        @if (item.ImagePath == "noimage.png" || item.ImagePath == "" || item.ImagePath == null)
+        {
+            <!-- Preview Image -->
+            <img class="img-responsive" width="900" style="width:100%" height="300" src="~/Image/Tintuc/900x300x4.jpg" alt="">
+            //src = "http://placehold.it/900x300"
+        }
+        else
+        {
+            <img class="img-responsive" width="900" height="300" src="~/Image/Tintuc/900x300x4.jpg" alt="">
+        }
+
+        @if (item.updated_at == null)
+        {
+            <!-- Date/Time -->
+            <p><small>Posted on @item.created_at</small> </p>
+        }
+        else
+        {
+            <p><small>Posted on @item.updated_at</small> </p>
+        }
+        <hr>
+
+        <!-- Post Content -->
+        <p class="lead"><small>@item.TomTat</small></p>
+        @*Convert Html to label*@
+        <small>@Html.Raw(HttpUtility.HtmlDecode(item.NoiDung))</small>
+        <hr>
+        @if (item.updated_at == null)
+        {
+            <!-- Date/Time -->
+            <p><span class="glyphicon glyphicon-time"></span> <small>Posted on @item.created_at by @item.name </small></p>
+        }
+        else
+        {
+            <p><span class="glyphicon glyphicon-time"></span> <small>Posted on @item.updated_at by @item.name </small></p>
+        }
+
+    </div>
+        <!-- Blog Sidebar Widgets Column -->
+     <div class="col-md-3">
+            <!--Trang tin tuc lien quan-->
+            @Html.Action("Lienquan", "ChiTiet", new { idLT = item.idLoaiTin,key=ViewBag.key })
+            <!--Trang tin tuc noi bat-->
+            @Html.Action("Noibat", "ChiTiet",new { key = ViewBag.key })
+     </div>
+    }
+</div>

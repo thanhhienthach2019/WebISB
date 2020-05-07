@@ -1,0 +1,76 @@
+﻿@model WebISB.Models.loaitailieu
+
+@{
+    ViewBag.Title = "Thêm loại tài liệu";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Insert", "loaitailieuAd", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6 text-danger text-uppercase tieude">
+                    <strong>Quản lý loại tài liệu</strong>
+                </div>
+                <div class="col-md-6 text-right">
+                    <button type="submit" class="btn btn-sm btn-primary">Lưu dữ liệu</button>
+                    <a href="@Url.Action("Index","loaitailieuAd")" class="btn btn-sm btn-success">Quay lại</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-block">
+            <div class="row" style="padding: 1% 1% 1% 1%">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Mã loại tài liệu</label>
+                        @Html.TextAreaFor(model => model.MaLoai, new { @class = "form-control", @rows = "1" })
+                        @Html.ValidationMessageFor(model => model.MaLoai, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Tên loại tài liệu</label>
+                        @Html.TextAreaFor(model => model.TenLoai, new { @class = "form-control", @rows = "1" })
+                        @Html.ValidationMessageFor(model => model.TenLoai, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Ngày tạo</label>
+                        @Html.TextAreaFor(model => model.Create_at, new { @class = "form-control", @rows = "1",@readOnly = "true" })
+                        @Html.ValidationMessageFor(model => model.Create_at, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Người tạo</label>
+                        @Html.TextAreaFor(model => model.User_create, new { @class = "form-control", @rows = "1", @readOnly = "true" })
+                        @Html.ValidationMessageFor(model => model.User_create, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (ViewBag.Message != null)
+{
+    if (ViewBag.tam == 1)
+    {
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                swal("", "@ViewBag.Message!", "success").then(function () {
+                    window.location.href = "/Admin/loaitailieuAd";
+                });
+            };
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                swal("", "@ViewBag.Message!", "warning");
+            };
+        </script>
+    }
+
+}

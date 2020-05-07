@@ -1,0 +1,121 @@
+﻿@model IEnumerable<WebISB.Models.Get_tailieu_admin_Result>
+
+@{
+    ViewBag.Title = "Danh sách tài liệu";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@Html.AntiForgeryToken()
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6 text-danger text-uppercase">
+                <strong>Danh sách tài liệu</strong>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="@Url.Action("Insert","Tailieu")" class="btn btn-sm btn-success">Thêm tài liệu</a>
+                <a href="@Url.Action("Trash","Tailieu")" class="btn btn-sm btn-danger">Thùng rác</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-block" style="padding: 1% 1% 1% 1%">
+        @*Sung dung table <thead> va <tbody> thi moi su dung duoc Datatable*@
+        <table class="table table-striped table-bordered" id="tailieutable">
+            <thead>
+                <tr>
+                    <th width="1%" style="text-align:center">
+                        STT
+                    </th>
+                    <th width="50%">
+                        Tiêu đề
+                    </th>
+                    <th width="15%">
+                        Ngày cập nhật
+                    </th>
+                    <th width="20%">
+                        Đơn vị nhận
+                    </th>
+                    <th width="15%">
+                        Quản lý
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="text-align:center;font-weight:bold">
+                            @Html.DisplayFor(modelItem => item.STT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TieuDe)
+                        </td>
+                        <td>
+                            @Convert.ToDateTime(item.Create_at).ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VietTat)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit","Tailieu",new { id = @item.id})" class="btn btn-warning btn-sm">Sửa</a>  
+                            <input type="button" class="btn btn-danger btn-sm" onclick="DeleteDocument(@item.id)" value="Xóa" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    function DeleteDocument(id) {
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure that you want to delete this Document?",
+            icon: "warning",
+            buttons: {
+                catch: {
+                    text: "Delete",
+                    value: "catch",
+                },
+                cancel: "Cancel",
+            },
+        })
+            .then((value) => {
+                var token = $('input[name="__RequestVerificationToken"]').val();
+                var headers = {};
+                headers['__RequestVerificationToken'] = token;
+                switch (value) {
+                    case "catch":
+                        $.ajax({
+                            type: 'POST',
+                            url: "/Admin/tailieu/Deltrash/" + id + "",
+                            contentType: 'application/json; charset=utf-8',
+                            headers: headers,
+                            data: JSON.stringify({ __RequestVerificationToken: token, "id": id}),
+                            dataType: "JSON",
+                            success: function (response) {
+                                if (response) {
+                                    swal("Delete data successfully!", {
+                                        icon: "success",
+                                    }).then(function () {
+                                        window.location.reload();
+                                    });
+                                }
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                console.log(textStatus);
+                                console.log(jqXHR.status);
+                                console.log(jqXHR.statusText);
+                                console.log(jqXHR.responseText);
+                                swal("Delete data fail!", {
+                                    icon: "warning",
+                                }).then(function () {
+                                    window.location.reload();
+                                });
+                            }
+                        });
+                        break;
+                }
+            });
+    }
+</script>
+<script src="~/Content/Script/database_tailieu.js"></script>

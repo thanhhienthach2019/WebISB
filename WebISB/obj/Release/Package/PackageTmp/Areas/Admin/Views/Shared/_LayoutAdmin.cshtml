@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width" />
+    @*<link rel="icon" type="image/png" href="~/Content/images/icons/logo.gif" />*@
+    <link rel="shortcut icon" href="~/assets_trangchu/image/favicon.png" type="image/png" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    @*<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">*@
+    <link href="~/assets/css/allfontsize.css" rel="stylesheet" />
+    @*<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />*@
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/LayoutAdmin.css" rel="stylesheet" />
+    <link href="~/Content/css/ImageStyle.css" rel="stylesheet" />
+    <link href="~/Content/css/thongtinlienhe.css" rel="stylesheet" />
+    @*Chosen*@
+    <link href="~/Content/Chosen/chosen.min.css" rel="stylesheet" />
+    @*Chosen*@
+    @*Checkbox*@
+    <link href="~/Content/css/checkbox.css" rel="stylesheet" />
+    @*Checkbox*@
+
+
+    <!-- Styles -->
+    <link href="~/assets/css/lib/weather-icons.css" rel="stylesheet" />
+    <link href="~/assets/css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/assets/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/assets/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="~/assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="~/assets/css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="~/assets/css/lib/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/assets/css/lib/helper.css" rel="stylesheet">
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/Content/css/form_body_dashboard.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+
+</head>
+<body>
+    <div id="wapper">
+        <!-- /# sidebar -->
+        @Html.Partial("_MainMenu_index")
+
+        <!-- /# Header -->
+        @Html.Partial("_HeaderPage")
+
+        @* Main *@
+        <div class="content-wrap">
+            <div class="main">
+                <div class="container-fluid">
+                    <section id="main-content">
+                        @RenderBody()
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!-- /# footer page -->
+        <div id="footer">
+            @Html.Partial("_FooterPage")
+        </div>
+    </div>
+
+    <!-- jquery vendor -->
+    <script src="~/assets/js/lib/jquery.min.js"></script>
+    <script src="~/assets/js/lib/jquery.nanoscroller.min.js"></script>
+    <!-- nano scroller -->
+    <script src="~/assets/js/lib/menubar/sidebar.js"></script>
+    <script src="~/assets/js/lib/preloader/pace.min.js"></script>
+    <!-- sidebar -->
+    <script src="~/assets/js/lib/bootstrap.min.js"></script>
+
+    <!-- bootstrap -->
+
+    <script src="~/assets/js/lib/circle-progress/circle-progress.min.js"></script>
+    <script src="~/assets/js/lib/circle-progress/circle-progress-init.js"></script>
+
+    <script src="~/assets/js/lib/morris-chart/raphael-min.js"></script>
+    <script src="~/assets/js/lib/morris-chart/morris.js"></script>
+    <script src="~/assets/js/lib/morris-chart/morris-init.js"></script>
+
+    <!--  flot-chart js -->
+    <script src="~/assets/js/lib/flot-chart/jquery.flot.js"></script>
+    <script src="~/assets/js/lib/flot-chart/jquery.flot.resize.js"></script>
+    <script src="~/assets/js/lib/flot-chart/flot-chart-init.js"></script>
+    <!-- // flot-chart js -->
+
+
+    <script src="~/assets/js/lib/vector-map/jquery.vmap.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/jquery.vmap.min.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/jquery.vmap.sampledata.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.world.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.algeria.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.argentina.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.brazil.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.france.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.germany.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.greece.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.iran.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.iraq.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.russia.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.tunisia.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.europe.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.usa.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/lib/vector-map/vector.init.js"></script>
+
+    <script src="~/assets/js/lib/weather/jquery.simpleWeather.min.js"></script>
+    <script src="~/assets/js/lib/weather/weather-init.js"></script>
+    <script src="~/assets/js/lib/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/assets/js/lib/owl-carousel/owl.carousel-init.js"></script>
+    <script src="~/assets/js/scripts.js"></script>
+    <!-- scripit init-->
+
+    @*Chosen*@
+    <script src="~/Content/Script/chosen.jquery.min.js"></script>
+
+</body>
+</html>
+@*<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>*@
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+<script src="~/assets/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/assets/js/sweetalert.min.js"></script>

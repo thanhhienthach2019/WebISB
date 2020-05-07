@@ -1,0 +1,69 @@
+﻿
+
+<div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+    <div class="nano">
+        <div class="nano-content">
+            <div class="logo"><a href="~/admin/Dashboard"><!-- <img src="assets/images/logo.png" alt="" /> --><span>Admin</span></a></div>
+            <ul>
+                <li class="label">Main</li>
+                <li><a href="~/"><i class="ti-home"></i> Trang chủ</a></li>
+                @if (@Session["mLoaivanban"] != null)
+                {
+                    <li class="label">Loại văn bản</li>
+                    <li><a href="~/admin/loaivanbans"><i class="ti-book"></i>  Danh sách loại văn bản</a></li>
+                }
+                @if (@Session["mTaiLieu"] != null)
+                {
+                    <li class="label">Loại tài liệu</li>
+                    <li><a href="~/admin/loaitailieuAd"><i class="ti-layout-cta-left"></i> Danh sách loại tài liệu</a></li>
+                }
+                @if (@Session["mVanban"] != null)
+                {
+                    <li class="label">Văn bản</li>
+                    <li><a href="~/admin/vanban"><i class="ti-book"></i>  Danh sách văn bản</a></li>
+                    <li><a href="~/admin/vanban/insert"><i class="ti-receipt"></i> Thêm văn bản</a></li>
+                }
+                @if (@Session["mTheloaiTin"] != null)
+                {
+                    <li class="label">Thể loại tin</li>
+                    <li><a href="~/admin/Theloai"><i class="ti-view-list"></i>  Danh sách thể loại</a></li>
+                    <li><a href="~/admin/Theloai/insert"><i class="ti-plus"></i> Thêm thể loại </a></li>
+                }
+
+                @if (@Session["mLoaiTin"] != null)
+                {
+                    <li class="label">Loại tin</li>
+                    <li><a href="~/admin/Loaitin"><i class="ti-agenda"></i>  Danh sách loại tin</a></li>
+                    <li><a href="~/admin/Loaitin/insert"><i class="ti-support"></i> Thêm loại tin </a></li>
+                }
+                @if (@Session["mTinTuc"] != null)
+                {
+                    <li class="label">Tin tức</li>
+                    <li><a href="~/admin/Tintuc"><i class="ti-bookmark-alt"></i>  Danh sách tin tức</a></li>
+                    <li><a href="~/admin/Tintuc/insert"><i class="ti-save"></i> Thêm tin tức</a></li>                  
+                }
+
+                @if (@Session["mTaiLieu"] != null)
+                {
+                    <li class="label">Tài liệu</li>
+                    <li><a href="~/admin/Tailieu"><i class="ti-layout-cta-left"></i> Danh sách tài liệu</a></li>
+                    <li><a href="~/admin/Tailieu/insert"><i class="ti-write"></i> Thêm tài liệu</a></li>
+                }
+                @if (@Session["mQuantri"] != null)
+                {
+                    <li class="label">Quản trị</li>
+                    <li><a href="~/admin/Quantri"><i class="ti-user"></i> Quản lý người dùng</a></li>
+                    <li><a href="~/admin/PhanQuyen"><i class="ti-user"></i> Phân quyền người dùng</a></li>
+                }
+                <li class="label">Hệ thống</li>
+                <li><a href="@Url.Action("Logout","Auth")"><i class="ti-share-alt"></i> Đăng xuất</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $(document).on('click', 'ul li', function () {
+        $(this).addClass('active').siblings().removeClass('active')
+    })
+</script>

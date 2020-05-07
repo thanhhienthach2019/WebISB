@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Dell.GII.Modern.FrameWork.Security</name>
+    </assembly>
+    <members>
+        <member name="M:Dell.GII.Modern.Framework.Security.DataSecurity.Implementation.TripleDESBox.Dell#GII#Modern#Framework#Security#DataSecurity#Interface#ITripleDESBox#TripleDESBox(System.String,System.Text.UTF8Encoding)">
+            <summary>
+            This Triple DES Box Which Actually setting Encryption box
+            </summary>
+            <param name="keyToDeCrypt"></param>
+            <param name="Encodeder"></param>
+            <returns>
+            return TripleDESBox for Enable Encryption or Decryption 
+            </returns>
+        </member>
+        <member name="M:Dell.GII.Modern.Framework.Security.DataSecurity.Implementation.TripleDESCryptoServicesHolder.EnCryptText(System.String,System.String)">
+            <summary>
+            This Methos Helps to do Encyption With Triple DES
+            </summary>
+            <param name="textToEncrypt"></param>
+            <param name="keyToEncrypt"></param>
+            <returns>
+            Return Encrypted String
+            </returns>
+        </member>
+        <member name="M:Dell.GII.Modern.Framework.Security.DataSecurity.Implementation.TripleDESCryptoServicesHolder.DeCryptText(System.String,System.String)">
+            <summary>
+            This Method Helps to do Decryption With Triple DES
+            </summary>
+            <param name="textToDecrypt"></param>
+            <param name="keyToDeCrypt"></param>
+            <returns>
+            Return the Derypted String
+            </returns>
+        </member>
+    </members>
+</doc>

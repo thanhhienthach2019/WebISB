@@ -1,0 +1,82 @@
+﻿@model WebISB.Models.theloai
+
+@{
+    ViewBag.Title = "Thêm thể loại";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Insert", "Theloai", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6 text-danger text-uppercase tieude">
+                    <strong>Quản lý thể loại tin</strong>
+                </div>
+                <div class="col-md-6 text-right">
+                    <button type="submit" class="btn btn-sm btn-primary">Lưu dữ liệu</button>
+                    <a href="@Url.Action("Index","Theloai")" class="btn btn-sm btn-success">Quay lại</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-block">
+            <div class="row" style="padding: 1% 1% 1% 1%">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tên loại tin</label>
+                        @Html.TextAreaFor(model => model.Ten, new { @class = "form-control", @rows = "1" })
+                        @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Trạng thái</label>
+                        @Html.DropDownListFor(model => model.status, new SelectList(
+                          new List<Object>{
+                               new { value = 2 , text = "Hiện"},
+                               new { value = 1 , text = "Ẩn"  }
+                            },
+                          "value",
+                          "text",
+                           2), new { @class = "form-control" } )
+                        @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Ngày cập nhật</label>
+                        @Html.TextAreaFor(model => model.updated_at, new { @class = "form-control", @rows = "1", @ReadOnly = "true" })
+                        @Html.ValidationMessageFor(model => model.updated_at, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Ngày tạo</label>
+                        @Html.TextAreaFor(model => model.created_at, new { @class = "form-control", @rows = "1" })
+                        @Html.ValidationMessageFor(model => model.created_at, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (ViewBag.Message != null)
+{
+    if (ViewBag.tam == 1)
+    {
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                swal("", "@ViewBag.Message!", "success");
+            };
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                swal("", "@ViewBag.Message!", "warning");
+            };
+        </script>
+    }
+
+}

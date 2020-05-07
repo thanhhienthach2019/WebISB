@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\SAP\FrontEnd\SAPgui\sapshcut.exe" sap.bitis-group.com -user=dncntt002 -pw=051015 -system=P01 -Client=888

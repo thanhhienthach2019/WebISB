@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Ban hành văn bản";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@if (ViewBag.Message != null)
+{
+    if (ViewBag.tam == 1)
+    {
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                swal("", "@ViewBag.Message!", "success").then(function () {
+                    window.location.href = "/Admin/Banhanhvb";
+                });
+            };
+
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                swal("", "@ViewBag.Message!", "warning").then(Function(){
+                    window.location.reload();
+                });
+            };
+        </script>
+    }
+}

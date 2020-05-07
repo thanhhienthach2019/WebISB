@@ -1,0 +1,1235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ISBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="comment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idTinTuc" Type="Int32" />
+    <Property Name="NoiDung" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tintuc" Relationship="Self.FK_comment_tintuc" FromRole="comment" ToRole="tintuc" />
+    <NavigationProperty Name="user" Relationship="Self.FK_comment_users" FromRole="comment" ToRole="users" />
+  </EntityType>
+  <EntityType Name="loaitin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idTheLoai" Type="Int32" Nullable="false" />
+    <Property Name="Ten" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TenKhongDau" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="theloai" Relationship="Self.FK_loaitin_theloai" FromRole="loaitin" ToRole="theloai" />
+    <NavigationProperty Name="tintucs" Relationship="Self.FK_tintuc_loaitin" FromRole="loaitin" ToRole="tintuc" />
+    <Property Name="status" Type="Int16" />
+  </EntityType>
+  <EntityType Name="slide">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Hinh" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="link" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="theloai">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TenKhongDau" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="loaitins" Relationship="Self.FK_loaitin_theloai" FromRole="theloai" ToRole="loaitin" />
+    <Property Name="status" Type="Int16" />
+  </EntityType>
+  <EntityType Name="tintuc">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="TieuDeKhongDau" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Name="TomTat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NoiBat" Type="Int32" />
+    <Property Name="SoLuotXem" Type="Int32" />
+    <Property Name="idLoaiTin" Type="Int32" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <Property Name="User_Create" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="Int32" />
+    <NavigationProperty Name="comments" Relationship="Self.FK_comment_tintuc" FromRole="tintuc" ToRole="comment" />
+    <NavigationProperty Name="loaitin" Relationship="Self.FK_tintuc_loaitin" FromRole="tintuc" ToRole="loaitin" />
+    <NavigationProperty Name="user" Relationship="Self.FK_tintuc_users" FromRole="tintuc" ToRole="users" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="comments" Relationship="Self.FK_comment_users" FromRole="users" ToRole="comment" />
+    <NavigationProperty Name="tintucs" Relationship="Self.FK_tintuc_users" FromRole="users" ToRole="tintuc" />
+    <Property Name="donvi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DonVi1" Relationship="ISBModel.FK__users__donvi__18EBB532" FromRole="user" ToRole="DonVi" />
+    <NavigationProperty Name="tailieux" Relationship="ISBModel.FK__tailieu__user_cr__0B91BA14" FromRole="user" ToRole="tailieu" />
+  </EntityType>
+  <Association Name="FK_comment_tintuc">
+    <End Role="tintuc" Type="Self.tintuc" Multiplicity="0..1" />
+    <End Role="comment" Type="Self.comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tintuc">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="idTinTuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_comment_users">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="comment" Type="Self.comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loaitin_theloai">
+    <End Role="theloai" Type="Self.theloai" Multiplicity="1" />
+    <End Role="loaitin" Type="Self.loaitin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="theloai">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="loaitin">
+        <PropertyRef Name="idTheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tintuc_loaitin">
+    <End Role="loaitin" Type="Self.loaitin" Multiplicity="1" />
+    <End Role="tintuc" Type="Self.tintuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loaitin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tintuc">
+        <PropertyRef Name="idLoaiTin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tintuc_users">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="tintuc" Type="Self.tintuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tintuc">
+        <PropertyRef Name="User_Create" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ISBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="comments" EntityType="Self.comment" />
+    <EntitySet Name="loaitins" EntityType="Self.loaitin" />
+    <EntitySet Name="slides" EntityType="Self.slide" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="theloais" EntityType="Self.theloai" />
+    <EntitySet Name="tintucs" EntityType="Self.tintuc" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK_comment_tintuc" Association="Self.FK_comment_tintuc">
+      <End Role="tintuc" EntitySet="tintucs" />
+      <End Role="comment" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_comment_users" Association="Self.FK_comment_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="comment" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loaitin_theloai" Association="Self.FK_loaitin_theloai">
+      <End Role="theloai" EntitySet="theloais" />
+      <End Role="loaitin" EntitySet="loaitins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tintuc_loaitin" Association="Self.FK_tintuc_loaitin">
+      <End Role="loaitin" EntitySet="loaitins" />
+      <End Role="tintuc" EntitySet="tintucs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tintuc_users" Association="Self.FK_tintuc_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="tintuc" EntitySet="tintucs" />
+    </AssociationSet>
+    <FunctionImport Name="FN_Get_TinTuc" ReturnType="Collection(ISBModel.FN_Get_TinTuc_Result)" />
+    <FunctionImport Name="FN_Update_TinTuc" EntitySet="tintucs" ReturnType="Collection(ISBModel.tintuc)">
+      <Parameter Name="TieuDe" Mode="In" Type="String" />
+      <Parameter Name="TieuDeKhongDau" Mode="In" Type="String" />
+      <Parameter Name="TomTat" Mode="In" Type="String" />
+      <Parameter Name="NoiDung" Mode="In" Type="String" />
+      <Parameter Name="ImagePath" Mode="In" Type="String" />
+      <Parameter Name="NoiBat" Mode="In" Type="Int32" />
+      <Parameter Name="IdLoaiTin" Mode="In" Type="Int32" />
+      <Parameter Name="Updated_at" Mode="In" Type="DateTime" />
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Get_TinTuc_Trash" ReturnType="Collection(ISBModel.FN_Get_TinTuc_Trash_Result)" />
+    <FunctionImport Name="FN_Get_LoaiTin" ReturnType="Collection(ISBModel.FN_Get_LoaiTin_Result)" />
+    <FunctionImport Name="Get_LoaiTin_Trash" ReturnType="Collection(ISBModel.Get_LoaiTin_Trash_Result)" />
+    <FunctionImport Name="FN_Get_LoaiTin_Trash" ReturnType="Collection(ISBModel.FN_Get_LoaiTin_Trash_Result)" />
+    <FunctionImport Name="Get_TheLoai" ReturnType="Collection(ISBModel.Get_TheLoai_Result)" />
+    <FunctionImport Name="FN_Get_TheLoai" ReturnType="Collection(ISBModel.FN_Get_TheLoai_Result)" />
+    <FunctionImport Name="Update_Loaitin_Status">
+      <Parameter Name="idTheLoai" Mode="In" Type="Int32" />
+      <Parameter Name="up" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Update_Loaitin_Status">
+      <Parameter Name="idTheLoai" Mode="In" Type="Int32" />
+      <Parameter Name="up" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Update_Tintuc_Status">
+      <Parameter Name="idLoaiTin" Mode="In" Type="Int32" />
+      <Parameter Name="up" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Update_Tintuc_Status">
+      <Parameter Name="idLoaiTin" Mode="In" Type="Int32" />
+      <Parameter Name="up" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Count_status" ReturnType="Collection(Int32)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="TT_S" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Count_status">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="TT_S" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Count_status_Lt" ReturnType="Collection(Int32)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="TT_S" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Count_status_Lt">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="TT_S" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_TheLoai_Trash" ReturnType="Collection(ISBModel.Get_TheLoai_Trash_Result)" />
+    <FunctionImport Name="FN_Get_TheLoai_Trash" ReturnType="Collection(ISBModel.FN_Get_TheLoai_Trash_Result)" />
+    <FunctionImport Name="Delete_Loaitin_TinTuc">
+      <Parameter Name="idTheLoai" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Delete_TinTuc">
+      <Parameter Name="idLoaiTin" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Delete_Loaitin_TinTuc">
+      <Parameter Name="idTheLoai" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Tailieu" ReturnType="Collection(ISBModel.Get_Tailieu_Result)">
+      <Parameter Name="MaLoai" Mode="In" Type="String" />
+      <Parameter Name="MS_DV" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Get_Tailieu" ReturnType="Collection(ISBModel.FN_Get_Tailieu_Result)">
+      <Parameter Name="MaLoai" Mode="In" Type="String" />
+      <Parameter Name="MS_DV" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Tailieu_Trash" ReturnType="Collection(ISBModel.Get_Tailieu_Trash_Result)">
+      <Parameter Name="ms_dv" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Get_Tailieu_Trash" ReturnType="Collection(ISBModel.FN_Get_Tailieu_Trash_Result)">
+      <Parameter Name="ms_dv" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Side_Menu" ReturnType="Collection(ISBModel.Get_Side_Menu_Result)">
+      <Parameter Name="Idparent" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="F_Get_Side_Menu" ReturnType="Collection(ISBModel.F_Get_Side_Menu_Result)">
+      <Parameter Name="Idparent" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_TinTuc_TC" ReturnType="Collection(ISBModel.Get_TinTuc_TC_Result)" />
+    <FunctionImport Name="FN_Get_TinTuc_TC" ReturnType="Collection(ISBModel.FN_Get_TinTuc_TC_Result)" />
+    <FunctionImport Name="Get_TinTuc_Loai_TC" ReturnType="Collection(ISBModel.Get_TinTuc_Loai_TC_Result)">
+      <Parameter Name="Loai" Mode="In" Type="String" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Get_TinTuc_Loai_TC" ReturnType="Collection(ISBModel.FN_Get_TinTuc_Loai_TC_Result)">
+      <Parameter Name="Loai" Mode="In" Type="String" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Slide_Page" />
+    <FunctionImport Name="FN_Get_Slide_Page" EntitySet="slides" ReturnType="Collection(ISBModel.slide)" />
+    <EntitySet Name="lienhes" EntityType="ISBModel.lienhe" />
+    <FunctionImport Name="Get_LienHe" ReturnType="Collection(ISBModel.Get_LienHe_Result)" />
+    <FunctionImport Name="FN_Get_LienHe" EntitySet="lienhes" ReturnType="Collection(ISBModel.lienhe)" />
+    <EntitySet Name="gioithieux" EntityType="ISBModel.gioithieu" />
+    <FunctionImport Name="Get_GioiThieu" ReturnType="Collection(ISBModel.Get_GioiThieu_Result)" />
+    <FunctionImport Name="FN_Get_GioiThieu" EntitySet="gioithieux" ReturnType="Collection(ISBModel.gioithieu)" />
+    <FunctionImport Name="Get_ChiTietTin" ReturnType="Collection(ISBModel.Get_ChiTietTin_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Get_ChiTietTin" ReturnType="Collection(ISBModel.FN_Get_ChiTietTin_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_ChiTietTin_LT" ReturnType="Collection(ISBModel.Get_ChiTietTin_LT_Result)">
+      <Parameter Name="idLT" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Get_ChiTietTin_LT" ReturnType="Collection(ISBModel.FN_Get_ChiTietTin_LT_Result)">
+      <Parameter Name="idLT" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_ChiTietTin_Noibat" ReturnType="Collection(ISBModel.Get_ChiTietTin_Noibat_Result)" />
+    <FunctionImport Name="FN_Get_ChiTietTin_Noibat" ReturnType="Collection(ISBModel.FN_Get_ChiTietTin_Noibat_Result)" />
+    <EntitySet Name="loaivanbans" EntityType="ISBModel.loaivanban" />
+    <FunctionImport Name="get_donvi" ReturnType="Collection(ISBModel.get_donvi_Result)" />
+    <FunctionImport Name="FN_get_donvi" ReturnType="Collection(ISBModel.FN_get_donvi_Result)" />
+    <EntitySet Name="DonVis" EntityType="ISBModel.DonVi" />
+    <FunctionImport Name="Get_Banhanhvb" ReturnType="Collection(ISBModel.Get_Banhanhvb_Result)" />
+    <FunctionImport Name="FN_Get_Banhanhvb" ReturnType="Collection(ISBModel.FN_Get_Banhanhvb_Result)" />
+    <AssociationSet Name="FK__users__donvi__18EBB532" Association="ISBModel.FK__users__donvi__18EBB532">
+      <End Role="DonVi" EntitySet="DonVis" />
+      <End Role="user" EntitySet="users" />
+    </AssociationSet>
+    <FunctionImport Name="Get_Banhanhvb_Tim" ReturnType="Collection(ISBModel.Get_Banhanhvb_Tim_Result)">
+      <Parameter Name="Sovb" Mode="In" Type="String" />
+      <Parameter Name="Noiphathanh" Mode="In" Type="String" />
+      <Parameter Name="Loaivanban" Mode="In" Type="String" />
+      <Parameter Name="Trichyeu" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_vanbandi" ReturnType="Collection(ISBModel.Get_vanbandi_Result)">
+      <Parameter Name="donvi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Get_Banhanhvb_Tim" ReturnType="Collection(ISBModel.FN_Get_Banhanhvb_Tim_Result)">
+      <Parameter Name="Sovb" Mode="In" Type="String" />
+      <Parameter Name="Noiphathanh" Mode="In" Type="String" />
+      <Parameter Name="Loaivanban" Mode="In" Type="String" />
+      <Parameter Name="Trichyeu" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Get_vanbandi" ReturnType="Collection(ISBModel.FN_Get_vanbandi_Result)">
+      <Parameter Name="donvi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Banhanhvb_Tim_vbdi" ReturnType="Collection(ISBModel.Get_Banhanhvb_Tim_vbdi_Result)">
+      <Parameter Name="donvi" Mode="In" Type="String" />
+      <Parameter Name="Sovb" Mode="In" Type="String" />
+      <Parameter Name="Noiphathanh" Mode="In" Type="String" />
+      <Parameter Name="Loaivanban" Mode="In" Type="String" />
+      <Parameter Name="Trichyeu" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Get_Banhanhvb_Tim_vbdi" ReturnType="Collection(ISBModel.FN_Get_Banhanhvb_Tim_vbdi_Result)">
+      <Parameter Name="donvi" Mode="In" Type="String" />
+      <Parameter Name="Sovb" Mode="In" Type="String" />
+      <Parameter Name="Noiphathanh" Mode="In" Type="String" />
+      <Parameter Name="Loaivanban" Mode="In" Type="String" />
+      <Parameter Name="Trichyeu" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Noibo_vbden" ReturnType="Collection(ISBModel.Get_Noibo_vbden_Result)">
+      <Parameter Name="DonVi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FN_Get_Noibo_vbden" ReturnType="Collection(ISBModel.FN_Get_Noibo_vbden_Result)">
+      <Parameter Name="DonVi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Banhanhvb_NB_Den" ReturnType="Collection(ISBModel.Get_Banhanhvb_NB_Den_Result)">
+      <Parameter Name="Sovb" Mode="In" Type="String" />
+      <Parameter Name="Noiphathanh" Mode="In" Type="String" />
+      <Parameter Name="Loaivanban" Mode="In" Type="String" />
+      <Parameter Name="Trichyeu" Mode="In" Type="String" />
+      <Parameter Name="DonVi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_vanbandi_NoiBo" ReturnType="Collection(ISBModel.Get_vanbandi_NoiBo_Result)">
+      <Parameter Name="donvi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_vanbandi_NoiBo_search" ReturnType="Collection(ISBModel.Get_vanbandi_NoiBo_search_Result)">
+      <Parameter Name="Sovb" Mode="In" Type="String" />
+      <Parameter Name="Loaivanban" Mode="In" Type="String" />
+      <Parameter Name="Trichyeu" Mode="In" Type="String" />
+      <Parameter Name="donvigui" Mode="In" Type="String" />
+      <Parameter Name="DonViNhan" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Chitietvb" ReturnType="Collection(ISBModel.Get_Chitietvb_Result)">
+      <Parameter Name="Id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_vanban_dashboard" ReturnType="Collection(ISBModel.Get_vanban_dashboard_Result)">
+      <Parameter Name="Donvi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_banhanhvanban_dashboard" ReturnType="Collection(ISBModel.Get_banhanhvanban_dashboard_Result)">
+      <Parameter Name="Donvi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_vanban_cb" ReturnType="Collection(ISBModel.Get_vanban_cb_Result)" />
+    <EntitySet Name="Banhanhvbs" EntityType="ISBModel.Banhanhvb" />
+    <EntitySet Name="vanbans" EntityType="ISBModel.vanban" />
+    <AssociationSet Name="FK__Banhanhvb__Idvan__59C55456" Association="ISBModel.FK__Banhanhvb__Idvan__59C55456">
+      <End Role="vanban" EntitySet="vanbans" />
+      <End Role="Banhanhvb" EntitySet="Banhanhvbs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__vanban__Idloaivb__10566F31" Association="ISBModel.FK__vanban__Idloaivb__10566F31">
+      <End Role="loaivanban" EntitySet="loaivanbans" />
+      <End Role="vanban" EntitySet="vanbans" />
+    </AssociationSet>
+    <EntitySet Name="PhanQuyens" EntityType="ISBModel.PhanQuyen" />
+    <FunctionImport Name="sp_delVanban">
+      <Parameter Name="idvb" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="Get_loaiVanban" ReturnType="Collection(ISBModel.Get_loaiVanban_Result)" />
+    <FunctionImport Name="Get_User" ReturnType="Collection(ISBModel.Get_User_Result)" />
+    <FunctionImport Name="Get_PhanQuyen" ReturnType="Collection(ISBModel.Get_PhanQuyen_Result)" />
+    <EntitySet Name="loaitailieux" EntityType="ISBModel.loaitailieu" />
+    <EntitySet Name="tailieux" EntityType="ISBModel.tailieu" />
+    <AssociationSet Name="FK__tailieu__MaLoai__7755B73D" Association="ISBModel.FK__tailieu__MaLoai__7755B73D">
+      <End EntitySet="loaitailieux" Role="loaitailieu" />
+      <End EntitySet="tailieux" Role="tailieu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tailieu__user_cr__0B91BA14" Association="ISBModel.FK__tailieu__user_cr__0B91BA14">
+      <End Role="user" EntitySet="users" />
+      <End Role="tailieu" EntitySet="tailieux" />
+    </AssociationSet>
+    <FunctionImport Name="Get_LoaiTaiLieu" ReturnType="Collection(ISBModel.Get_LoaiTaiLieu_Result)" />
+    <FunctionImport Name="Get_Tailieu_PhongBan" ReturnType="Collection(ISBModel.Get_Tailieu_PhongBan_Result)">
+      <Parameter Name="MaLoai" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_tailieu_admin" ReturnType="Collection(ISBModel.Get_tailieu_admin_Result)">
+      <Parameter Name="ms_dv" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Banhanhvb_vb" ReturnType="Collection(ISBModel.Get_Banhanhvb_vb_Result)" />
+    <FunctionImport Name="Get_Chitietvb_vb" ReturnType="Collection(ISBModel.Get_Chitietvb_vb_Result)">
+      <Parameter Name="Id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="get_loaivanban_dropdownlist" ReturnType="Collection(ISBModel.get_loaivanban_dropdownlist_Result)" />
+  </EntityContainer>
+  <ComplexType Name="Get_TinTuc_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_TinTuc_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="lt" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Get_TinTuc_Trash_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_TinTuc_Trash_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="lt" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Get_LoaiTin_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="idTheLoai" Nullable="false" />
+    <Property Type="String" Name="Ten" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenKhongDau" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_LoaiTin_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="idTheLoai" Nullable="false" />
+    <Property Type="String" Name="Ten" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenKhongDau" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="Int16" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="tl" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Get_LoaiTin_Trash_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="idTheLoai" Nullable="false" />
+    <Property Type="String" Name="Ten" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenKhongDau" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="Int16" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_LoaiTin_Trash_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="idTheLoai" Nullable="false" />
+    <Property Type="String" Name="Ten" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenKhongDau" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="Int16" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="tl" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Get_TheLoai_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="Ten" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenKhongDau" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="Int16" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_TheLoai_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="Ten" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenKhongDau" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="Int16" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_TheLoai_Trash_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="Ten" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenKhongDau" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="Int16" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_TheLoai_Trash_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="Ten" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenKhongDau" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="Int16" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_Tailieu_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="TenFile" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="400" />
+    <Property Type="DateTime" Name="create_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="create_up" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_Tailieu_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="create_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="FilePath" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="user_create" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MaSo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="VietTat" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MS_DV" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="TenLoai" Nullable="true" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="Get_Tailieu_Trash_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="TenFile" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="FilePath" Nullable="true" MaxLength="400" />
+    <Property Type="DateTime" Name="create_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="create_up" Nullable="true" Precision="23" />
+    <Property Type="Int16" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_Tailieu_Trash_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="FilePath" Nullable="true" MaxLength="400" />
+    <Property Type="Int16" Name="status" Nullable="true" />
+    <Property Type="DateTime" Name="Create_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MS_DV" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="VietTat" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="Get_Side_Menu_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="Ten" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenKhongDau" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="Int16" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="F_Get_Side_Menu_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="Ten" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenKhongDau" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="Int16" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_TinTuc_TC_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="IdTL" Nullable="false" />
+    <Property Type="String" Name="TenTL" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="IdLT" Nullable="false" />
+    <Property Type="String" Name="TenLT" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_TinTuc_TC_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="IdTL" Nullable="false" />
+    <Property Type="String" Name="TenTL" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="IdLT" Nullable="false" />
+    <Property Type="String" Name="TenLT" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_TinTuc_Loai_TC_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="IdTL" Nullable="false" />
+    <Property Type="String" Name="TenTL" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="IdLT" Nullable="false" />
+    <Property Type="String" Name="TenLT" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_TinTuc_Loai_TC_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="IdTL" Nullable="false" />
+    <Property Type="String" Name="TenTL" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="IdLT" Nullable="false" />
+    <Property Type="String" Name="TenLT" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_Slide_Page_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="Ten" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Hinh" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="link" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_Slide_Page_Result1">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="Ten" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Hinh" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="link" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+  </ComplexType>
+  <EntityType Name="lienhe">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="User_Create" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Date_Create" Type="DateTime" Precision="3" />
+  </EntityType>
+  <ComplexType Name="Get_LienHe_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="User_Create" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="Date_Create" Nullable="true" Precision="23" />
+  </ComplexType>
+  <EntityType Name="gioithieu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="User_Create" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Date_Create" Type="DateTime" Precision="3" />
+  </EntityType>
+  <ComplexType Name="Get_GioiThieu_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="User_Create" Nullable="true" MaxLength="150" />
+    <Property Type="DateTime" Name="Date_Create" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Get_ChiTietTin_Result">
+    <Property Type="String" Name="TenTL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenLT" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_ChiTietTin_Result">
+    <Property Type="String" Name="TenTL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenLT" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="Get_ChiTietTin_LT_Result">
+    <Property Type="String" Name="TenTL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenLT" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_ChiTietTin_LT_Result">
+    <Property Type="String" Name="TenTL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenLT" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_ChiTietTin_Noibat_Result">
+    <Property Type="String" Name="TenTL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenLT" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_ChiTietTin_Noibat_Result">
+    <Property Type="String" Name="TenTL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TenLT" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TieuDeKhongDau" Nullable="true" MaxLength="400" />
+    <Property Type="String" Name="TomTat" Nullable="true" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NoiBat" Nullable="true" />
+    <Property Type="Int32" Name="SoLuotXem" Nullable="true" />
+    <Property Type="Int32" Name="idLoaiTin" Nullable="false" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="User_Create" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="loaivanban">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiVB" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="vanbans" Relationship="ISBModel.FK__vanban__Idloaivb__10566F31" FromRole="loaivanban" ToRole="vanban" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="UserCreate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <ComplexType Name="get_donvi_Result">
+    <Property Type="String" Name="MS_DV" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="VietTat" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="FN_get_donvi_Result">
+    <Property Type="String" Name="MS_DV" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="VietTat" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="DonVi">
+    <Key>
+      <PropertyRef Name="MS_DV" />
+    </Key>
+    <Property Name="MS_DV" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TenDonVi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="VietTat" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="users" Relationship="ISBModel.FK__users__donvi__18EBB532" FromRole="DonVi" ToRole="user" />
+  </EntityType>
+  <ComplexType Name="Get_Banhanhvb_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_Banhanhvb_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="String" Name="File" Nullable="true" MaxLength="300" />
+  </ComplexType>
+  <Association Name="FK__users__donvi__18EBB532">
+    <End Type="ISBModel.DonVi" Role="DonVi" Multiplicity="0..1" />
+    <End Type="ISBModel.user" Role="user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonVi">
+        <PropertyRef Name="MS_DV" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="donvi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="Get_Banhanhvb_Tim_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="Get_vanbandi_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_Banhanhvb_Tim_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="File" Nullable="true" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_vanbandi_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="Get_Banhanhvb_Tim_vbdi_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_Banhanhvb_Tim_vbdi_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="Get_Noibo_vbden_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="FN_Get_Noibo_vbden_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="Get_Banhanhvb_NB_Den_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="Get_vanbandi_NoiBo_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="Get_vanbandi_NoiBo_search_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="Get_Chitietvb_Result">
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="Donvigui" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Noidung" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="File" Nullable="true" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="Get_vanban_dashboard_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="Noidung" Nullable="true" />
+    <Property Type="DateTime" Name="Ngaydang" Nullable="true" Precision="23" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="TenLoaiVB" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Url" Nullable="true" MaxLength="300" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Get_banhanhvanban_dashboard_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="Noidung" Nullable="true" />
+    <Property Type="String" Name="Url" Nullable="true" MaxLength="300" />
+    <Property Type="DateTime" Name="Ngaydang" Nullable="true" Precision="23" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="TenLoaiVB" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Donvinhan" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="Ngayphathanh" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Get_vanban_cb_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="Tieude" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Banhanhvb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Idvanban" Type="Guid" Nullable="false" />
+    <Property Name="Donvinhan" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Ngayphathanh" Type="DateTime" Precision="3" />
+    <Property Name="Nguoibanhanh" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="vanban" Relationship="ISBModel.FK__Banhanhvb__Idvan__59C55456" FromRole="Banhanhvb" ToRole="vanban" />
+  </EntityType>
+  <EntityType Name="vanban">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Sovb" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Trichyeu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Ngaydang" Type="DateTime" Precision="3" />
+    <Property Name="Nguoidang" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Idloaivb" Type="Int32" />
+    <Property Name="Url" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Donvigui" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="TenFile" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Banhanhvbs" Relationship="ISBModel.FK__Banhanhvb__Idvan__59C55456" FromRole="vanban" ToRole="Banhanhvb" />
+    <NavigationProperty Name="loaivanban" Relationship="ISBModel.FK__vanban__Idloaivb__10566F31" FromRole="vanban" ToRole="loaivanban" />
+  </EntityType>
+  <Association Name="FK__Banhanhvb__Idvan__59C55456">
+    <End Type="ISBModel.vanban" Role="vanban" Multiplicity="1" />
+    <End Type="ISBModel.Banhanhvb" Role="Banhanhvb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vanban">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Banhanhvb">
+        <PropertyRef Name="Idvanban" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__vanban__Idloaivb__10566F31">
+    <End Type="ISBModel.loaivanban" Role="loaivanban" Multiplicity="0..1" />
+    <End Type="ISBModel.vanban" Role="vanban" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loaivanban">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="vanban">
+        <PropertyRef Name="Idloaivb" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PhanQuyen">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mVanban" Type="Boolean" />
+    <Property Name="mTheloaiTin" Type="Boolean" />
+    <Property Name="mLoaiTin" Type="Boolean" />
+    <Property Name="mTinTuc" Type="Boolean" />
+    <Property Name="mTaiLieu" Type="Boolean" />
+    <Property Name="mGioiThieu" Type="Boolean" />
+    <Property Name="mLienHe" Type="Boolean" />
+    <Property Name="mLoaivanban" Type="Boolean" />
+    <Property Name="mQuantri" Type="Boolean" />
+    <Property Name="Quyen" Type="Boolean" />
+  </EntityType>
+  <ComplexType Name="Get_loaiVanban_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TenLoaiVB" Nullable="true" MaxLength="150" />
+    <Property Type="DateTime" Name="DateCreate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UserCreate" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="DateUpdate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Get_User_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="String" Name="id" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+    <Property Type="String" Name="donvi" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MS_DV" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="VietTat" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="Get_PhanQuyen_Result">
+    <Property Type="String" Name="id" Nullable="false" MaxLength="50" />
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Quyen" Nullable="false" MaxLength="5" />
+  </ComplexType>
+  <EntityType Name="loaitailieu">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="TenLoai" MaxLength="300" FixedLength="false" Unicode="true" Type="String" />
+    <NavigationProperty Name="tailieux" Relationship="ISBModel.FK__tailieu__MaLoai__7755B73D" FromRole="loaitailieu" ToRole="tailieu" />
+    <Property Name="Create_at" Precision="3" Type="DateTime" />
+    <Property Name="User_create" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tailieu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TenFile" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="FilePath" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Name="create_at" Type="DateTime" Precision="3" />
+    <Property Name="create_up" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Int16" />
+    <Property Name="user_create" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MaSo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MS_DV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="loaitailieu" Relationship="ISBModel.FK__tailieu__MaLoai__7755B73D" FromRole="tailieu" ToRole="loaitailieu" />
+    <NavigationProperty Name="user" Relationship="ISBModel.FK__tailieu__user_cr__0B91BA14" FromRole="tailieu" ToRole="user" />
+  </EntityType>
+  <Association Name="FK__tailieu__MaLoai__7755B73D">
+    <End Type="ISBModel.loaitailieu" Multiplicity="0..1" Role="loaitailieu" />
+    <End Type="ISBModel.tailieu" Multiplicity="*" Role="tailieu" />
+    <ReferentialConstraint>
+      <Principal Role="loaitailieu">
+        <PropertyRef Name="MaLoai" />
+      </Principal>
+      <Dependent Role="tailieu">
+        <PropertyRef Name="MaLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tailieu__user_cr__0B91BA14">
+    <End Type="ISBModel.user" Role="user" Multiplicity="0..1" />
+    <End Type="ISBModel.tailieu" Role="tailieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tailieu">
+        <PropertyRef Name="user_create" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="Get_LoaiTaiLieu_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="String" Name="MaLoai" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TenLoai" Nullable="true" MaxLength="300" />
+    <Property Type="DateTime" Name="Create_at" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Get_Tailieu_PhongBan_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="String" Name="MaLoai" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="MS_DV" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="TenLoai" Nullable="true" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="Get_tailieu_admin_Result">
+    <Property Type="Int64" Name="STT" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="FilePath" Nullable="true" MaxLength="400" />
+    <Property Type="DateTime" Name="Create_at" Nullable="true" Precision="23" />
+    <Property Type="Int16" Name="status" Nullable="true" />
+    <Property Type="String" Name="MS_DV" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="VietTat" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="Get_Banhanhvb_vb_Result">
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="File" Nullable="true" MaxLength="300" />
+    <Property Type="Int64" Name="STT" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_Chitietvb_vb_Result">
+    <Property Type="DateTime" Name="NgayPhatHanh" Nullable="true" />
+    <Property Type="String" Name="Sovb" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Trichyeu" Nullable="true" />
+    <Property Type="String" Name="File" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Donvigui" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Noidung" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="get_loaivanban_dropdownlist_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="TenLoaiVB" Nullable="true" MaxLength="150" />
+  </ComplexType>
+</Schema>

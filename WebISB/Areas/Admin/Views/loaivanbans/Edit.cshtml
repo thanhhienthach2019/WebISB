@@ -1,0 +1,76 @@
+﻿@model WebISB.Models.loaivanban
+
+@{
+    ViewBag.Title = "Cập nhật loại văn bản";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "loaivanbans", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6 text-danger text-uppercase tieude">
+                    <strong>Quản lý thể loại tin</strong>
+                </div>
+                <div class="col-md-6 text-right">
+                    <button type="submit" class="btn btn-sm btn-primary">Lưu dữ liệu</button>
+                    <a href="@Url.Action("Index","loaivanbans")" class="btn btn-sm btn-success">Quay lại</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-block">
+            <div class="row" style="padding: 1% 1% 1% 1%">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tên loại văn bản</label>
+                        @Html.TextAreaFor(model => model.TenLoaiVB, new { @class = "form-control", @rows = "1" })
+                        @Html.ValidationMessageFor(model => model.TenLoaiVB, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Người tạo</label>
+                        @Html.TextAreaFor(model => model.UserCreate, new { @class = "form-control", @rows = "1", @ReadOnly = "true" })
+                        @Html.ValidationMessageFor(model => model.UserCreate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Ngày cập nhật</label>
+                        @Html.TextAreaFor(model => model.DateUpdate, new { @class = "form-control", @rows = "1", @ReadOnly = "true" })
+                        @Html.ValidationMessageFor(model => model.DateUpdate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Ngày tạo</label>
+                        @Html.TextAreaFor(model => model.DateCreate, new { @class = "form-control", @rows = "1", @ReadOnly = "true" })
+                        @Html.ValidationMessageFor(model => model.DateCreate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (ViewBag.Message != null)
+{
+    if (ViewBag.tam == 1)
+    {
+        <script type="text/javascript" charset="utf-8">
+             window.onload = function () {
+                swal("", "@ViewBag.Message!", "success").then(function () {
+                    window.location.href = "/Admin/loaivanbans";
+                });
+            };
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                swal("", "@ViewBag.Message!", "warning");
+            };
+        </script>
+    }
+
+}

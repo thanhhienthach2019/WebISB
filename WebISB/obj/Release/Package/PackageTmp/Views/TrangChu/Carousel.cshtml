@@ -1,0 +1,22 @@
+﻿@model IEnumerable<WebISB.Models.slide>
+
+@if ((int)ViewBag.Count > 0)
+{
+    int tmp = 0;
+    int dem = 0;
+    foreach (var item in Model)
+    {
+        if (tmp == 0)
+        {
+            <li data-target="#carousel-example-generic" data-slide-to="@dem" class="active"></li>
+            tmp = 1;
+            dem += 1;
+        }
+        else
+        {
+            <li data-target="#carousel-example-generic" data-slide-to="@dem"></li>
+            dem += 1;
+        }
+
+    }
+}

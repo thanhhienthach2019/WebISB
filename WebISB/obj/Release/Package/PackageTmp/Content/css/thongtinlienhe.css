@@ -1,0 +1,162 @@
+﻿.address_shops_title {
+    border-top: 1px solid #878087;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    margin: 0;
+}
+
+    .address_shops_title a {
+        margin: 0;
+        font-weight: 400;
+        font-size: 20px;
+        color: #fff;
+        background: #034ea1;
+        display: inline-block;
+        padding: 5px 25px;
+    }
+#map {
+    width: 100%;
+    max-width: 100%;
+}
+
+#map.map-ht {
+        height: 400px;
+    }
+
+.shops_wrap .choose_address {
+    position: relative;
+    margin-bottom: 12px;
+}
+    .shops_wrap .choose_address .change-store {
+        width: 100%;
+        border: 1px solid #000;
+        color: #808080;
+        text-indent: 5px;
+        font-size: 13px;
+        padding: .6em .8em;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0;
+        background: #fff url("data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNjE2MTYxIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMzAgMjQiIHdpZHRoPSIzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNy40MSA3Ljg0TDEyIDEyLjQybDQuNTktNC41OEwxOCA5LjI1bC02IDYtNi02eiIvPjxwYXRoIGQ9Ik0wLS43NWgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==") no-repeat right center;
+    }
+.shops_wrap .show_shops ul li a .icon_map {
+    display: inline-block;
+    width: 35px;
+    vertical-align: top;
+    font-size: 22px;
+    text-align: left;
+    margin: 0;
+    padding-left: 1px;
+    padding-right: 10px;
+}
+
+.shops_wrap .show_shops ul li a .map_content {
+    display: inline-block;
+    width: calc(100% - 40px);
+    vertical-align: top;
+    margin: 0;
+}
+.shops_wrap .show_shops ul {
+    padding: 0;
+    max-height: 445px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /*custom Scroll Chrome */
+}
+
+    .shops_wrap .show_shops ul::-webkit-scrollbar {
+        width: 8px;
+        height: 40px;
+    }
+
+    .shops_wrap .show_shops ul::-webkit-scrollbar-track {
+        background: #e1e1e1;
+    }
+
+    .shops_wrap .show_shops ul::-webkit-scrollbar-thumb {
+        background: #000;
+        -webkit-box-shadow: inset 0 0 0 8px #000;
+    }
+
+        .shops_wrap .show_shops ul::-webkit-scrollbar-thumb:window-inactive {
+            background: #e1e1e1;
+        }
+
+    .shops_wrap .show_shops ul li {
+        padding: 15px 0;
+        font-weight: 400;
+        font-size: 13px;
+        color: #212121;
+    }
+
+        .shops_wrap .show_shops ul li:last-child {
+            border-bottom: 0;
+        }
+
+        .shops_wrap .show_shops ul li a {
+            font-weight: 400;
+            font-size: 13px;
+            color: #212121;
+            display: block;
+        }
+
+            .shops_wrap .show_shops ul li a .icon_map {
+                display: inline-block;
+                width: 35px;
+                vertical-align: top;
+                font-size: 22px;
+                text-align: left;
+                margin: 0;
+                padding-left: 1px;
+                padding-right: 10px;
+            }
+
+            .shops_wrap .show_shops ul li a .map_content {
+                display: inline-block;
+                width: calc(100% - 40px);
+                vertical-align: top;
+                margin: 0;
+            }
+
+            .shops_wrap .show_shops ul li a .obj_title {
+                margin: 0;
+                display: block;
+                text-transform: uppercase;
+                color: #000;
+                font-weight: 600;
+                font-size: 13px;
+            }
+
+            .shops_wrap .show_shops ul li a .mb-1 {
+                display: block;
+                color: #808080;
+                font-size: 12px;
+            }
+@media (min-width: 1440px) {
+    /*.container{width: 100%;padding-left: 120px;padding-right: 120px;}*/
+    .hdht_about_us .hdht_wrap ul li {
+        min-height: 190px;
+    }
+
+        .hdht_about_us .hdht_wrap ul li.hdht_title h2 {
+            font-size: 40px;
+        }
+
+    .shops_wrap .show_shops ul {
+        max-height: 330px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .shops_wrap .show_shops ul {
+        max-height: 420px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .shops_wrap .show_shops ul {
+        max-height: 470px;
+    }
+}

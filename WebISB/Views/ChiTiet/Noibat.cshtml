@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebISB.Models.FN_Get_ChiTietTin_Noibat_Result>
+
+@if ((int)ViewBag.Count > 0)
+{
+<div class="panel panel-default">
+    <div class="panel-heading">
+        @if (ViewBag.key == "thong-tin")
+        {<b>Thông tin nổi bật</b>}
+        else if (ViewBag.key == "bao-cao")
+        {<b>Báo cáo nổi bật</b>}
+    </div>
+        <div class="panel-body">
+            @foreach (var item in Model)
+            {
+                <!-- item -->
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-md-3">
+                    <a href="@Url.Action("Detail", "ChiTiet",new { id = item.id } )">
+                        @if (item.ImagePath == "" || item.ImagePath == null || item.ImagePath == "noimage.png")
+                        {
+                            <img class="img-responsive" width="50" height="50" src="~/Image/Tintuc/320x150.png" alt="">
+                        }
+                        else
+                        {
+                            <img class="img-responsive" width="50" height="50" src="~/Image/Tintuc/@item.ImagePath" alt="">
+                        }
+
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <a href="@Url.Action("Detail", "ChiTiet",new { id = item.id } )"><b><small>@item.TenLT</small></b></a>
+                </div>
+                <div class="col-md-12">
+                    @if (item.TieuDe.Length < 45)
+                    {
+                        <p class="lead"><small>@item.TieuDe</small></p>
+                    }
+                    else
+                    {
+                        <p><small>@item.TieuDe.Substring(0, 45)...</small></p>
+                    }
+                    <div class="break"></div>
+                </div>
+               
+                
+            </div>
+                <!-- end item -->
+            }
+        </div>
+</div>
+}

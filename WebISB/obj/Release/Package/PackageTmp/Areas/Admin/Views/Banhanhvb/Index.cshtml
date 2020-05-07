@@ -1,0 +1,101 @@
+﻿@model IEnumerable<WebISB.Models.Get_banhanhvanban_dashboard_Result>
+
+@{
+    ViewBag.Title = "Ban hành văn bản";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6 text-danger text-uppercase">
+                <strong>Ban hành văn bản</strong>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="@Url.Action("Insert","Banhanhvb")" class="btn btn-sm btn-success"> Ban hành văn bản</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-block" style="padding: 1% 1% 1% 1%">
+        @*Sung dung table <thead> va <tbody> thi moi su dung duoc Datatable*@
+        <table class="table table-striped table-bordered" id="bhvanbantabledb">
+            <thead>
+                <tr>
+                    <th width="1%" style="text-align:center">
+                        STT
+                    </th>
+                    <th width="10%">
+                        Số văn bản
+                    </th>
+                    <th width="43%">
+                        Trích yếu
+                    </th>
+                    <th width="17%">
+                        Ngày phát hành
+                    </th>
+                    <th width="28%">
+                        Đơn vị nhận
+                    </th>
+                    <th width="1%">
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="text-align:center;font-weight:bold">
+                            @Html.DisplayFor(modelItem => item.STT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sovb)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trichyeu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ngayphathanh)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenDonVi)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Xóa", "Delete", "Banhanhvb", new { id = item.Id }, new { @class = "btn btn-danger btn-sm", @OnClick = "return confirm('Are you sure you to delete this Record?');" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@if (ViewBag.Message != null)
+{
+    if (ViewBag.tam == 1)
+    {
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                swal("", "@ViewBag.Message!", "success").then(function () {
+                    window.location.reload();
+                });
+            };
+
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                swal("", "@ViewBag.Message!", "warning").then(Function(){
+                    window.location.reload();
+                });
+            };
+        </script>
+    }
+}
+<script>
+    $(document).ready(function () {
+        $('#bhvanbantabledb').DataTable();
+    });
+
+</script>

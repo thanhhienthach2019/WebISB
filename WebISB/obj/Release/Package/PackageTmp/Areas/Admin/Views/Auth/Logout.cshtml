@@ -1,0 +1,29 @@
+﻿@*@{
+    ViewBag.Title = "Logout";
+    //Layout = "~/Areas/Admin/Views/Shared/_AdminLogin.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}*@
+<link href="~/assets/css/lib/font-awesome.min.css" rel="stylesheet">
+@if (ViewBag.tmp == 1)
+{
+    <script type="text/javascript" charset="utf-8">
+                window.onload = function () {
+                    swal("", "@ViewBag.Message!", "success").then(function () {
+                        window.location.href = "/Trangchu";
+                    });
+                };
+
+    </script>
+}
+else
+{
+    <script type="text/javascript" charset="utf-8">
+                window.onload = function () {
+                    swal("", "@ViewBag.Message!", "warning").then(function () {
+                        window.location.href = "/Admin/Dashboard";
+                    });
+                };
+
+    </script>
+}
+    <script src="~/assets/js/sweetalert.min.js"></script>

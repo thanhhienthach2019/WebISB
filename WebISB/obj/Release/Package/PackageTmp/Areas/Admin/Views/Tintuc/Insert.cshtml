@@ -1,0 +1,117 @@
+﻿@model WebISB.Models.tintuc
+
+@{
+
+    ViewBag.Title = "Thêm tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Insert", "Tintuc", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6 text-danger text-uppercase tieude">
+                            <strong>Quản lý tin tức</strong>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button type="submit" class="btn btn-sm btn-primary">Lưu dữ liệu</button>
+                            <a href="@Url.Action("Index","Tintuc")" class="btn btn-sm btn-success">Quay lại</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block">
+                    <div class="row" style="padding: 1% 1% 1% 1%">
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label>Tiêu đề</label>
+                                @Html.TextAreaFor(model => model.TieuDe, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Tóm tắt</label>
+                                @Html.TextAreaFor(model => model.TomTat, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TomTat, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Nội dung</label>
+                                @Html.TextAreaFor(model => model.NoiDung, new { @ID = "NoiDung", @class = "form-control", @rows = "100" })
+                                @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                                <script>CKEDITOR.replace("NoiDung");</script>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Nổi bật</label>
+                                @Html.DropDownListFor(model => model.NoiBat, new SelectList(
+                                  new List<Object>{
+                                       new { value = 0 , text = "Không"  },
+                                       new { value = 1 , text = "Có" }
+                                    },
+                                  "value",
+                                  "text",
+                                   2), new { @class = "form-control" } )
+                                @Html.ValidationMessageFor(model => model.NoiBat, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Loại tin</label>
+                                @Html.DropDownList("idLoaiTin", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idLoaiTin, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Người tạo</label>
+                                @Html.DropDownList("User_Create", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.User_Create, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Hình ảnh</label>
+                                <div id="msg"></div>
+                                <div class="ml-2 col-sm-12">
+                                    <img src="~/Image/Tintuc/noimage.png" id="preview" class="img-thumbnail">
+                                </div>
+                                <form method="post" id="image-form">
+                                    <input type="file" name="img[]" class="file" accept="image/*">
+                                    <div class="input-group my-3">
+                                        <input type="text" class="form-control" disabled placeholder="Upload File" id="file">
+                                        <div class="input-group-append">
+                                            <button type="button" class="browse btn btn-primary">Browse...</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </div>
+</div>
+}
+
+@if (ViewBag.Message != null)
+{
+    if (ViewBag.tam == 1)
+    {
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                swal("", "@ViewBag.Message!", "success");
+            };
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                swal("", "@ViewBag.Message!", "warning");
+            };
+        </script>
+    }
+
+}
+<script src="~/Content/Script/Image.js"></script>
